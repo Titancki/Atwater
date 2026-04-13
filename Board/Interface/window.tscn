@@ -1,0 +1,80 @@
+[gd_scene load_steps=4 format=3 uid="uid://beug3gf8j2uvx"]
+
+[ext_resource type="Script" uid="uid://cov4sw0y6hj6w" path="res://Board/Interface/window.gd" id="1_6ho5t"]
+[ext_resource type="LabelSettings" uid="uid://dhj8oy7nk14ca" path="res://Board/Interface/label.tres" id="2_1nhtf"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cv8ua"]
+bg_color = Color(0.19394276, 0.08764651, 0.045711294, 1)
+border_width_bottom = 2
+border_color = Color(0.95686275, 0.8039216, 0.65882355, 1)
+
+[node name="Window" type="Control"]
+z_index = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6ho5t")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Header" type="PanelContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_cv8ua")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Header"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/Header/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Deck"
+label_settings = ExtResource("2_1nhtf")
+
+[node name="Close" type="Button" parent="VBoxContainer/Header/HBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+mouse_filter = 1
+action_mode = 0
+text = "X"
+
+[node name="Main" type="Control" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/Main"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer/Main/ScrollContainer"]
+layout_mode = 2
+columns = 9
+
+[node name="Footer" type="Control" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[connection signal="pressed" from="VBoxContainer/Header/HBoxContainer/Close" to="." method="_on_close_pressed"]

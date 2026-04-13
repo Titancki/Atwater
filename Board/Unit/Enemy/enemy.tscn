@@ -1,0 +1,52 @@
+[gd_scene load_steps=6 format=3 uid="uid://bcden520mgv3g"]
+
+[ext_resource type="Script" uid="uid://kmavld4l51ew" path="res://Board/Unit/unit.gd" id="1_441q7"]
+[ext_resource type="Texture2D" uid="uid://c6217dqrkxm1g" path="res://Board/Unit/Player/sprite.png" id="2_eoltf"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_wqrn7"]
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uqjhw"]
+draw_center = false
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.10643435, 0.009445065, 0.014638144, 1)
+border_blend = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lveat"]
+bg_color = Color(0.40544224, 0.095053755, 0.12025488, 1)
+
+[node name="Enemy" type="CharacterBody2D"]
+script = ExtResource("1_441q7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.53610575, 0, 0.02013988, 1)
+texture = ExtResource("2_eoltf")
+offset = Vector2(0, -22)
+
+[node name="Damage" type="Label" parent="."]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_top = -70.0
+offset_right = 20.0
+offset_bottom = -70.0
+grow_horizontal = 2
+text = "777"
+label_settings = SubResource("LabelSettings_wqrn7")
+horizontal_alignment = 1
+
+[node name="LifeBar" type="ProgressBar" parent="."]
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 5.0
+grow_horizontal = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_uqjhw")
+theme_override_styles/fill = SubResource("StyleBoxFlat_lveat")
+show_percentage = false

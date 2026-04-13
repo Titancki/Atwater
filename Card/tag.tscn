@@ -1,0 +1,58 @@
+[gd_scene load_steps=6 format=3 uid="uid://ciyfw1t4yurl3"]
+
+[ext_resource type="Script" uid="uid://cbn713cgwlswx" path="res://Card/tag.gd" id="1_w5jn3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xa6is"]
+content_margin_left = 5.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0.33333334, 0.3647059, 0.20784314, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_bottom = 1
+border_color = Color(0.69411767, 0.45490196, 0.21176471, 1)
+border_blend = true
+corner_radius_top_left = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="LabelSettings" id="LabelSettings_3o7ou"]
+font_size = 9
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fas7n"]
+content_margin_left = 2.0
+content_margin_right = 5.0
+bg_color = Color(0.08235294, 0.0627451, 0.03529412, 1)
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.69411767, 0.45490196, 0.21176471, 1)
+border_blend = true
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+expand_margin_left = 1.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_8ya76"]
+font_size = 9
+
+[node name="Tag" type="HBoxContainer"]
+theme_override_constants/separation = 0
+script = ExtResource("1_w5jn3")
+
+[node name="Name" type="PanelContainer" parent="."]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_xa6is")
+
+[node name="Label" type="Label" parent="Name"]
+layout_mode = 2
+text = "Duration"
+label_settings = SubResource("LabelSettings_3o7ou")
+
+[node name="Value" type="PanelContainer" parent="."]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_fas7n")
+
+[node name="Label" type="Label" parent="Value"]
+layout_mode = 2
+text = "2"
+label_settings = SubResource("LabelSettings_8ya76")

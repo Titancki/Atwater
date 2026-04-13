@@ -1,0 +1,45 @@
+[gd_scene load_steps=6 format=3 uid="uid://dhcngmgmmsmyo"]
+
+[ext_resource type="Texture2D" uid="uid://cty0ql648v5h1" path="res://Board/Unit/mask circle.png" id="1_1s7ge"]
+[ext_resource type="Texture2D" uid="uid://b8kjxqvfw8afm" path="res://Board/Unit/Player/artwork.png" id="2_3auop"]
+[ext_resource type="Script" uid="uid://d1tiq2ssgamss" path="res://Board/Interface/character_min.gd" id="2_08abo"]
+[ext_resource type="FontFile" uid="uid://cfh3kcppxl7ss" path="res://Card/Fonts/Cormorant_SC/CormorantSC-Medium.ttf" id="4_724mr"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_mblfm"]
+font = ExtResource("4_724mr")
+font_size = 32
+font_color = Color(0.96323174, 0.8036272, 0.6612902, 1)
+outline_size = 4
+outline_color = Color(0.08235294, 0.0627451, 0.03529412, 1)
+
+[node name="CharacterMin" type="TextureRect"]
+clip_children = 2
+texture = ExtResource("1_1s7ge")
+script = ExtResource("2_08abo")
+
+[node name="Artwork" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_3auop")
+expand_mode = 4
+
+[node name="UnitName" type="Label" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Name"
+label_settings = SubResource("LabelSettings_mblfm")

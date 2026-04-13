@@ -1,0 +1,205 @@
+[gd_scene load_steps=21 format=3 uid="uid://bustvwvwqfoh8"]
+
+[ext_resource type="Script" uid="uid://xxtawmq2ppgq" path="res://Card/card.gd" id="1_2b5ri"]
+[ext_resource type="Texture2D" uid="uid://bhmnegj50sn4j" path="res://Card/mask.png" id="1_n6eix"]
+[ext_resource type="Resource" uid="uid://ca3edn5aeky18" path="res://Data/Cards/block.tres" id="2_16l50"]
+[ext_resource type="Texture2D" uid="uid://dnvrvskvggor" path="res://Card/border.png" id="3_16l50"]
+[ext_resource type="Texture2D" uid="uid://cipa3tkicjwya" path="res://Card/Artwork/Placeholder/block.png" id="4_16l50"]
+[ext_resource type="Texture2D" uid="uid://dk31hsvu571ky" path="res://Card/name.png" id="4_tiodx"]
+[ext_resource type="FontFile" uid="uid://cfh3kcppxl7ss" path="res://Card/Fonts/Cormorant_SC/CormorantSC-Medium.ttf" id="5_2lr1o"]
+[ext_resource type="Texture2D" uid="uid://cg2an4elcaf0v" path="res://Card/cost.png" id="6_vd82b"]
+[ext_resource type="Texture2D" uid="uid://bgk2sq34ixpot" path="res://Card/panel.png" id="7_70a4p"]
+[ext_resource type="FontFile" uid="uid://bgx0fgd446yhr" path="res://Card/Fonts/Corben/Corben-Regular.ttf" id="8_0eynr"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jxfo7"]
+texture = ExtResource("1_n6eix")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7g61i"]
+texture = ExtResource("3_16l50")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_br8xj"]
+texture = ExtResource("4_tiodx")
+
+[sub_resource type="LabelSettings" id="LabelSettings_u7bjk"]
+font = ExtResource("5_2lr1o")
+font_size = 18
+font_color = Color(0.16078432, 0.11372549, 0.05490196, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tkwiq"]
+texture = ExtResource("6_vd82b")
+
+[sub_resource type="LabelSettings" id="LabelSettings_jljl0"]
+font = ExtResource("5_2lr1o")
+font_size = 18
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_eob3v"]
+texture_margin_left = 3.0
+texture_margin_right = 3.0
+texture_margin_bottom = 3.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hnf7y"]
+content_margin_left = 3.0
+content_margin_right = 3.0
+content_margin_bottom = 3.0
+texture = ExtResource("7_70a4p")
+
+[sub_resource type="LabelSettings" id="LabelSettings_ksupb"]
+line_spacing = -7.0
+font = ExtResource("8_0eynr")
+font_size = 12
+font_color = Color(0.16078432, 0.11372549, 0.05490196, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jxfo7"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0.23137255, 0.17254902, 0.101960786, 1)
+border_width_left = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.69411767, 0.45490196, 0.21176471, 1)
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="Card" type="Control"]
+z_index = 1
+texture_filter = 5
+custom_minimum_size = Vector2(200, 320)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 200.0
+offset_bottom = 322.0
+pivot_offset = Vector2(100, 322)
+script = ExtResource("1_2b5ri")
+data = ExtResource("2_16l50")
+
+[node name="Panel" type="Panel" parent="."]
+clip_children = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_jxfo7")
+
+[node name="Artwork" type="TextureRect" parent="Panel"]
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 322.0
+texture = ExtResource("4_16l50")
+expand_mode = 4
+stretch_mode = 6
+
+[node name="Border" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_7g61i")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 4.0
+offset_right = -19.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Header" type="Control" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Header"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.5
+offset_top = -1.5
+offset_right = 15.5
+offset_bottom = 6.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Name" type="Control" parent="VBoxContainer/Header/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Panel" type="Panel" parent="VBoxContainer/Header/HBoxContainer/Name"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 4.0
+offset_right = 15.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_br8xj")
+
+[node name="Label" type="Label" parent="VBoxContainer/Header/HBoxContainer/Name"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Block"
+label_settings = SubResource("LabelSettings_u7bjk")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Cost" type="PanelContainer" parent="VBoxContainer/Header/HBoxContainer"]
+custom_minimum_size = Vector2(32, 24)
+layout_direction = 4
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_tkwiq")
+
+[node name="Label" type="Label" parent="VBoxContainer/Header/HBoxContainer/Cost"]
+layout_mode = 2
+text = "10"
+label_settings = SubResource("LabelSettings_jljl0")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Empty" type="Control" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="Description" type="PanelContainer" parent="VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_eob3v")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Description"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="DescContainer" type="PanelContainer" parent="VBoxContainer/Description/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_hnf7y")
+
+[node name="Label" type="Label" parent="VBoxContainer/Description/VBoxContainer/DescContainer"]
+layout_mode = 2
+text = "Reduce incoming hit. Simple yet effective."
+label_settings = SubResource("LabelSettings_ksupb")
+autowrap_mode = 2
+
+[node name="TagsContainer" type="PanelContainer" parent="VBoxContainer/Description/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_jxfo7")
+
+[node name="BoxContainer" type="FlowContainer" parent="VBoxContainer/Description/VBoxContainer/TagsContainer"]
+layout_mode = 2

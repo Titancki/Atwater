@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="PlayerData" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://Data/cardStruct.gd" id="1_1eton"]
+[ext_resource type="Resource" path="res://Data/Cards/block.tres" id="2_11smb"]
+[ext_resource type="Resource" path="res://Data/Cards/shot.tres" id="3_3bi63"]
+[ext_resource type="Script" path="res://Data/playerStruct.gd" id="4_lbbtb"]
+
+[resource]
+script = ExtResource("4_lbbtb")
+deck = Array[ExtResource("1_1eton")]([ExtResource("2_11smb"), ExtResource("2_11smb"), ExtResource("3_3bi63"), ExtResource("3_3bi63"), ExtResource("3_3bi63"), ExtResource("3_3bi63"), ExtResource("3_3bi63"), ExtResource("3_3bi63"), ExtResource("3_3bi63"), ExtResource("3_3bi63")])
+is_player = true
+current_pm = 5
+current_pa = 1
+current_life = 100
+metadata/_custom_type_script = "uid://1jsb7v4as5by"

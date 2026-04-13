@@ -1,0 +1,345 @@
+[gd_scene load_steps=23 format=3 uid="uid://o7bc2qcgigfo"]
+
+[ext_resource type="Script" uid="uid://kmavld4l51ew" path="res://Board/Unit/unit.gd" id="1_l34k4"]
+[ext_resource type="Script" uid="uid://nxivn1owywqu" path="res://Board/Unit/Player/controller.gd" id="2_y5cd7"]
+[ext_resource type="Texture2D" uid="uid://c6217dqrkxm1g" path="res://Board/Unit/Player/sprite.png" id="3_54lgn"]
+[ext_resource type="Script" uid="uid://cmsg16nxntw24" path="res://Board/Unit/Player/interface.gd" id="4_unbq1"]
+[ext_resource type="Texture2D" uid="uid://bu3pg1sgk3g6x" path="res://Board/Interface/DrawIcon.png" id="5_cl7qv"]
+[ext_resource type="FontFile" uid="uid://c4qkpqf007l2a" path="res://Card/Fonts/Cormorant_SC/CormorantSC-Regular.ttf" id="6_eenkd"]
+[ext_resource type="Texture2D" uid="uid://cnogncw5ibxxo" path="res://Board/Interface/DiscardIcon.png" id="7_vuky1"]
+[ext_resource type="Texture2D" uid="uid://6koigtoux0e4" path="res://Board/Interface/DeckIcon.png" id="8_t7rcg"]
+[ext_resource type="Texture2D" uid="uid://c0uqv7b2p4f3r" path="res://Board/Interface/borderpanelt.png" id="10_v40la"]
+[ext_resource type="Texture2D" uid="uid://cgoatoqwbtdh6" path="res://Board/Interface/small panel.png" id="11_umr5p"]
+[ext_resource type="Texture2D" uid="uid://cro38w2yjsbbc" path="res://Board/Interface/empty gauge.png" id="12_kww3v"]
+[ext_resource type="Texture2D" uid="uid://dr1si8yemx64y" path="res://Board/Interface/modulate gauge.png" id="13_6eye1"]
+[ext_resource type="Texture2D" uid="uid://dodqdvuwix18e" path="res://Board/Interface/turngear.png" id="14_3nu21"]
+[ext_resource type="Texture2D" uid="uid://cq4robnawuoo6" path="res://Board/Interface/AmberBtn.png" id="15_3nj5t"]
+[ext_resource type="LabelSettings" uid="uid://dhj8oy7nk14ca" path="res://Board/Interface/label.tres" id="15_6andl"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p6vxe"]
+bg_color = Color(0.18431373, 0.14509805, 0.11372549, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xf67s"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_wpcvc"]
+font = ExtResource("6_eenkd")
+font_size = 40
+font_color = Color(0.96323174, 0.8036272, 0.6612902, 1)
+outline_size = 5
+outline_color = Color(0.08235294, 0.0627451, 0.03529412, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ecbmq"]
+font = ExtResource("6_eenkd")
+font_size = 32
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8fo2a"]
+texture = ExtResource("15_3nj5t")
+
+[sub_resource type="LabelSettings" id="LabelSettings_xwick"]
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_6andl"]
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[node name="Player" type="CharacterBody2D"]
+y_sort_enabled = true
+script = ExtResource("1_l34k4")
+
+[node name="Controller" type="Node2D" parent="."]
+script = ExtResource("2_y5cd7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_54lgn")
+offset = Vector2(0, -22)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(4, 4)
+
+[node name="Interface" type="CanvasLayer" parent="."]
+script = ExtResource("4_unbq1")
+
+[node name="Container" type="Control" parent="Interface"]
+texture_filter = 1
+custom_minimum_size = Vector2(0, 340)
+layout_mode = 3
+anchor_top = 0.75
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -84.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+
+[node name="Control" type="Control" parent="Interface/Container"]
+z_index = -1
+layout_mode = 1
+anchor_top = 0.7
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -6.1035156e-05
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="Panel" parent="Interface/Container/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_p6vxe")
+
+[node name="Border" type="TextureRect" parent="Interface/Container/Control"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 20.0
+grow_horizontal = 2
+mouse_filter = 2
+texture = ExtResource("10_v40la")
+stretch_mode = 1
+
+[node name="Zones" type="HBoxContainer" parent="Interface/Container"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.6
+anchor_bottom = 0.8
+offset_left = 30.0
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 5
+
+[node name="DrawBtn" type="Button" parent="Interface/Container/Zones"]
+layout_mode = 2
+mouse_force_pass_scroll_events = false
+theme_override_styles/normal = SubResource("StyleBoxEmpty_xf67s")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_xf67s")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_xf67s")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_xf67s")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_xf67s")
+action_mode = 0
+icon = ExtResource("5_cl7qv")
+
+[node name="Label" type="Label" parent="Interface/Container/Zones/DrawBtn"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "20"
+label_settings = SubResource("LabelSettings_wpcvc")
+
+[node name="DiscardBtn" type="Button" parent="Interface/Container/Zones"]
+layout_mode = 2
+mouse_force_pass_scroll_events = false
+theme_override_styles/normal = SubResource("StyleBoxEmpty_xf67s")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_xf67s")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_xf67s")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_xf67s")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_xf67s")
+action_mode = 0
+icon = ExtResource("7_vuky1")
+
+[node name="Label" type="Label" parent="Interface/Container/Zones/DiscardBtn"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "20"
+label_settings = SubResource("LabelSettings_wpcvc")
+
+[node name="DeckBtn" type="Button" parent="Interface/Container/Zones"]
+layout_mode = 2
+mouse_force_pass_scroll_events = false
+theme_override_styles/normal = SubResource("StyleBoxEmpty_xf67s")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_xf67s")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_xf67s")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_xf67s")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_xf67s")
+action_mode = 0
+icon = ExtResource("8_t7rcg")
+
+[node name="Label" type="Label" parent="Interface/Container/Zones/DeckBtn"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "20"
+label_settings = SubResource("LabelSettings_wpcvc")
+
+[node name="Hand" type="HBoxContainer" parent="Interface/Container"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.2
+anchor_right = 0.8
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+theme_override_constants/separation = -100
+alignment = 1
+
+[node name="CharInfo" type="Control" parent="Interface"]
+layout_mode = 3
+anchor_top = 0.65
+anchor_bottom = 0.85
+
+[node name="PA" type="TextureRect" parent="Interface/CharInfo"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.65
+anchor_bottom = 0.65
+offset_top = -24.00003
+offset_right = 210.0
+offset_bottom = 23.99997
+grow_vertical = 2
+texture = ExtResource("11_umr5p")
+
+[node name="Label" type="Label" parent="Interface/CharInfo/PA"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 80.0
+offset_top = 5.0
+offset_right = -20.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "PA 5/5"
+label_settings = SubResource("LabelSettings_ecbmq")
+
+[node name="PM" type="TextureRect" parent="Interface/CharInfo"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.35
+anchor_bottom = 0.35
+offset_top = -24.000023
+offset_right = 210.0
+offset_bottom = 23.999977
+grow_vertical = 2
+texture = ExtResource("11_umr5p")
+
+[node name="Label" type="Label" parent="Interface/CharInfo/PM"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 80.0
+offset_top = 5.0
+offset_right = -20.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "PM 5/5"
+label_settings = SubResource("LabelSettings_ecbmq")
+
+[node name="Life" type="TextureProgressBar" parent="Interface/CharInfo"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_top = -3.5999756
+offset_right = 53.0
+offset_bottom = 3.5999756
+grow_vertical = 2
+value = 50.0
+fill_mode = 3
+texture_under = ExtResource("12_kww3v")
+texture_progress = ExtResource("13_6eye1")
+texture_progress_offset = Vector2(6.5, 35)
+tint_progress = Color(0.6745098, 0.18039216, 0.19215687, 1)
+
+[node name="Endturn" type="TextureRect" parent="Interface"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -281.55347
+offset_top = -300.0
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 2
+texture = ExtResource("14_3nu21")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="Btn" type="Button" parent="Interface/Endturn"]
+z_index = -1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -96.0
+offset_top = -113.5
+offset_right = 127.0
+offset_bottom = 113.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme_override_styles/normal = SubResource("StyleBoxTexture_8fo2a")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_8fo2a")
+theme_override_styles/hover = SubResource("StyleBoxTexture_8fo2a")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_8fo2a")
+theme_override_styles/focus = SubResource("StyleBoxTexture_8fo2a")
+
+[node name="Label" type="Label" parent="Interface/Endturn/Btn"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -36.5
+offset_top = -41.5
+offset_right = 36.5
+offset_bottom = 41.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "End
+Turn"
+label_settings = ExtResource("15_6andl")
+
+[node name="Coords" type="Label" parent="Interface"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "0,0"
+label_settings = SubResource("LabelSettings_xwick")
+
+[node name="Damage" type="Label" parent="."]
+visible = false
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_top = -70.0
+offset_right = 20.0
+offset_bottom = -70.0
+grow_horizontal = 2
+text = "777"
+label_settings = SubResource("LabelSettings_6andl")
+horizontal_alignment = 1
+
+[connection signal="pressed" from="Interface/Container/Zones/DrawBtn" to="Interface" method="_on_draw_btn_pressed"]
+[connection signal="pressed" from="Interface/Container/Zones/DiscardBtn" to="Interface" method="_on_discard_btn_pressed"]
+[connection signal="pressed" from="Interface/Container/Zones/DeckBtn" to="Interface" method="_on_deck_btn_pressed"]
+[connection signal="pressed" from="Interface/Endturn/Btn" to="Interface" method="_on_btn_pressed"]

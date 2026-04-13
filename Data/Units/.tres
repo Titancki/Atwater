@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="UnitData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://Data/unitStruct.gd" id="1_xsne5"]
+
+[resource]
+script = ExtResource("1_xsne5")
+initiative = 0
+current_pm = 5
+current_pa = 3
+current_life = 90
+metadata/_custom_type_script = "uid://pwp27romc8q7"
