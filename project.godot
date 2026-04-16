@@ -21,7 +21,7 @@ window/size/viewport_width=1920
 window/size/viewport_height=1024
 window/stretch/mode="viewport"
 
-[rendering]
+[global_group]
 
-renderer/rendering_method="gl_compatibility"
-renderer/rendering_method.mobile="gl_compatibility"
+allies=""
+board=""

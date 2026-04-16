@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://bp8rnqn1hgq83"]
+[gd_scene load_steps=20 format=4 uid="uid://bp8rnqn1hgq83"]
 
 [ext_resource type="Script" uid="uid://bpk0183lbb8kh" path="res://Board/board.gd" id="1_mjcd3"]
 [ext_resource type="Script" uid="uid://btn46rcawlet8" path="res://Board/turn_manager.gd" id="2_c5imj"]
@@ -6,10 +6,23 @@
 [ext_resource type="Resource" path="res://Data/Units/player.tres" id="4_c5imj"]
 [ext_resource type="PackedScene" uid="uid://bcden520mgv3g" path="res://Board/Unit/Enemy/enemy.tscn" id="4_hmvj7"]
 [ext_resource type="PackedScene" uid="uid://db0npo308fai5" path="res://Board/Isometric Tileset/ground.tscn" id="5_733os"]
-[ext_resource type="Resource" uid="uid://cj8h4s5x01sg2" path="res://Data/Units/enemy.tres" id="6_lwnqk"]
+[ext_resource type="Script" uid="uid://bma5l327rj2fm" path="res://Data/Struct/enemyStruct.gd" id="6_hmvj7"]
 [ext_resource type="PackedScene" uid="uid://difra3ok41hlf" path="res://Board/Isometric Tileset/grass.tscn" id="6_nk54k"]
+[ext_resource type="Resource" uid="uid://j2yt8bu1rjwa" path="res://Data/Cards/shot.tres" id="7_733os"]
 [ext_resource type="PackedScene" uid="uid://1fqpux4ascve" path="res://Board/Isometric Tileset/highlight.tscn" id="7_fkvs5"]
 [ext_resource type="PackedScene" uid="uid://dyxfh2kd6kbaa" path="res://Board/Isometric Tileset/testBlock.tscn" id="8_5ybqi"]
+
+[sub_resource type="Resource" id="Resource_nk54k"]
+script = ExtResource("6_hmvj7")
+turn_hands = Array[Array]([[ExtResource("7_733os")]])
+max_pm = 1
+metadata/_custom_type_script = "uid://bma5l327rj2fm"
+
+[sub_resource type="Resource" id="Resource_fkvs5"]
+script = ExtResource("6_hmvj7")
+turn_hands = Array[Array]([[ExtResource("7_733os")]])
+max_pm = 1
+metadata/_custom_type_script = "uid://bma5l327rj2fm"
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_dwbyy"]
 resource_name = "Ground"
@@ -41,7 +54,7 @@ tile_layout = 4
 tile_size = Vector2i(32, 16)
 sources/0 = SubResource("TileSetScenesCollectionSource_j663q")
 
-[node name="TestBoard" type="Node2D" node_paths=PackedStringArray("enemies")]
+[node name="TestBoard" type="Node2D" node_paths=PackedStringArray("enemies") groups=["board"]]
 y_sort_enabled = true
 script = ExtResource("1_mjcd3")
 start_pos_player = Vector2i(13, 77)
@@ -73,11 +86,11 @@ unit_data = ExtResource("4_c5imj")
 board = NodePath("../..")
 
 [node name="Enemy" parent="TurnManager" node_paths=PackedStringArray("board") instance=ExtResource("4_hmvj7")]
-unit_data = ExtResource("6_lwnqk")
+unit_data = SubResource("Resource_nk54k")
 board = NodePath("../..")
 
 [node name="Enemy2" parent="TurnManager" node_paths=PackedStringArray("board") instance=ExtResource("4_hmvj7")]
-unit_data = ExtResource("6_lwnqk")
+unit_data = SubResource("Resource_fkvs5")
 board = NodePath("../..")
 
 [node name="Ground" type="TileMapLayer" parent="."]

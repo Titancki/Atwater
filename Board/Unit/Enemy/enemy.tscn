@@ -1,7 +1,24 @@
-[gd_scene load_steps=6 format=3 uid="uid://bcden520mgv3g"]
+[gd_scene load_steps=16 format=3 uid="uid://bcden520mgv3g"]
 
 [ext_resource type="Script" uid="uid://kmavld4l51ew" path="res://Board/Unit/unit.gd" id="1_441q7"]
-[ext_resource type="Texture2D" uid="uid://c6217dqrkxm1g" path="res://Board/Unit/Player/sprite.png" id="2_eoltf"]
+[ext_resource type="PackedScene" uid="uid://dgkk6qimr08u1" path="res://Board/Unit/unit_animator.tscn" id="2_h87k2"]
+[ext_resource type="Script" uid="uid://uf7lvm31o6g2" path="res://Board/Unit/Enemy/IA/ia.gd" id="3_lveat"]
+[ext_resource type="Script" uid="uid://dic76vetgc1qk" path="res://Board/Unit/Enemy/IA/idle_state.gd" id="4_lveat"]
+[ext_resource type="Script" uid="uid://cusr682iecj6a" path="res://Board/Unit/Enemy/IA/move_state.gd" id="6_tbqtu"]
+[ext_resource type="Script" uid="uid://b6tuon4vb6stk" path="res://Board/Unit/Enemy/IA/play_card_state.gd" id="7_eani5"]
+[ext_resource type="Script" uid="uid://4q24d3u6vinn" path="res://Board/Unit/Enemy/IA/end_turn_state.gd" id="8_h87k2"]
+[ext_resource type="Script" uid="uid://bgey4fkdmrwqr" path="res://Board/Unit/Enemy/IA/start_turn_state.gd" id="8_maxi4"]
+
+[sub_resource type="Environment" id="Environment_h87k2"]
+
+[sub_resource type="Environment" id="Environment_maxi4"]
+
+[sub_resource type="World3D" id="World3D_ma4ni"]
+environment = SubResource("Environment_h87k2")
+fallback_environment = SubResource("Environment_maxi4")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_h87k2"]
+viewport_path = NodePath("SubViewport")
 
 [sub_resource type="LabelSettings" id="LabelSettings_wqrn7"]
 outline_size = 4
@@ -22,13 +39,27 @@ bg_color = Color(0.40544224, 0.095053755, 0.12025488, 1)
 [node name="Enemy" type="CharacterBody2D"]
 script = ExtResource("1_441q7")
 
+[node name="SubViewport" type="SubViewport" parent="."]
+own_world_3d = true
+world_3d = SubResource("World3D_ma4ni")
+transparent_bg = true
+scaling_3d_mode = 1
+render_target_update_mode = 4
+
+[node name="UnitAnimator" parent="SubViewport" instance=ExtResource("2_h87k2")]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewport"]
+transform = Transform3D(0.70710677, 0.70710677, 3.090862e-08, 0, -4.371139e-08, 1, 0.70710677, -0.70710677, -3.090862e-08, 0, 0, 0)
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(0.53610575, 0, 0.02013988, 1)
-texture = ExtResource("2_eoltf")
-offset = Vector2(0, -22)
+modulate = Color(1, 0.3337893, 0.2845778, 1)
+scale = Vector2(0.12, 0.12)
+texture = SubResource("ViewportTexture_h87k2")
+offset = Vector2(0, -125)
 
 [node name="Damage" type="Label" parent="."]
-anchors_preset = -1
+visible = false
+anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -20.0
@@ -50,3 +81,21 @@ grow_horizontal = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_uqjhw")
 theme_override_styles/fill = SubResource("StyleBoxFlat_lveat")
 show_percentage = false
+
+[node name="IA" type="Node" parent="."]
+script = ExtResource("3_lveat")
+
+[node name="IdleState" type="Node" parent="IA"]
+script = ExtResource("4_lveat")
+
+[node name="StartTurnState" type="Node" parent="IA"]
+script = ExtResource("8_maxi4")
+
+[node name="MoveState" type="Node" parent="IA"]
+script = ExtResource("6_tbqtu")
+
+[node name="PlayCardState" type="Node" parent="IA"]
+script = ExtResource("7_eani5")
+
+[node name="EndTurnState" type="Node" parent="IA"]
+script = ExtResource("8_h87k2")

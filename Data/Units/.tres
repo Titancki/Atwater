@@ -1,11 +1,12 @@
-[gd_resource type="Resource" script_class="UnitData" load_steps=2 format=3]
+[gd_resource type="Resource" script_class="EnemyData" load_steps=3 format=3]
 
-[ext_resource type="Script" path="res://Data/unitStruct.gd" id="1_xsne5"]
+[ext_resource type="Script" path="res://Data/Struct/enemyStruct.gd" id="1_jh8cj"]
+[ext_resource type="Resource" path="res://Data/Cards/shot.tres" id="2_b7fby"]
 
 [resource]
-script = ExtResource("1_xsne5")
-initiative = 0
-current_pm = 5
-current_pa = 3
-current_life = 90
-metadata/_custom_type_script = "uid://pwp27romc8q7"
+script = ExtResource("1_jh8cj")
+turn_hands = Array[Array]([[ExtResource("2_b7fby")]])
+max_pm = 1
+current_pa = 1
+current_life = 100
+metadata/_custom_type_script = "uid://bma5l327rj2fm"

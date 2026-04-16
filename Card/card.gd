@@ -2,7 +2,7 @@ extends Control
 
 @export var data: CardData
 var is_playable = true
-signal played
+
 
 func _ready() -> void:
 	pivot_offset = Vector2(size.x / 2, size.y)
@@ -38,11 +38,3 @@ func _on_mouse_entered():
 func _on_mouse_exited():
 	scale = Vector2(1.0, 1.0)
 	z_index = 0
-
-func play(target: UnitData):
-	for tag in data.tags:
-		match tag.tag:
-			Tag.tag_name.DAMAGE:
-				target.take_damage(tag.value)
-
-	played.emit()

@@ -56,7 +56,7 @@ func _input(event):
 
 						if target and character_data.current_pa >= card_data.card_cost:
 							character_data.use_pa(card_data.card_cost)
-							selected_card.play(target.unit_data)
+							selected_card.data.play(target.unit_data)
 							character_data.discard_card_from_hand(card_data)
 							$"../Interface".refresh_hand_ui()
 							enter_idle()

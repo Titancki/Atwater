@@ -35,7 +35,14 @@ func compute_path(from: Vector2i, to: Vector2i) -> Array[Vector2i]:
 	if not astar.is_in_boundsv(from) or not astar.is_in_boundsv(to):
 		return []
 
+	# TEMP: allow starting tile
+	var was_solid = astar.is_point_solid(from)
+	astar.set_point_solid(from, false)
+
 	var result = astar.get_id_path(from, to)
+
+	# restore state
+	astar.set_point_solid(from, was_solid)
 
 	if result.size() > 0:
 		result.remove_at(0)
@@ -80,3 +87,4 @@ func move_astar_obstacle(from: Vector2i, to = null):
 		astar.set_point_solid(to, true)
 	else :
 		astar.set_point_solid(from, true)
+	

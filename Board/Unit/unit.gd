@@ -3,10 +3,10 @@ extends CharacterBody2D
 
 @export var unit_data: UnitData
 @export var board: Node2D
-
+@onready var animator = $SubViewport/UnitAnimator
 var is_my_turn := false
 var turn := 1
-var speed := 200.0
+var speed := 75.0
 var path: Array[Vector2i] = []
 var moving := false
 var has_emitted_stop := false
@@ -24,13 +24,15 @@ func _ready() -> void:
 	turn_ended.connect(end_turn)
 	unit_data.life_changed.connect(_on_life_changed)
 	unit_data.damaged.connect(_on_damaged)
-
-	unit_data.reset_turn_values()
-
+	unit_data.initialize()
+	animator.change_animation("Idle")
 	if unit_data.is_player:
 		unit_data.initialize_deck()
 		unit_data.draw_card(3)
-
+	else:
+		$LifeBar.max_value = unit_data.max_life
+		$LifeBar.value = unit_data.current_life
+	
 func setup(start_tile: Vector2i):
 	current_tile = start_tile
 	global_position = board.tile_to_world(current_tile)
