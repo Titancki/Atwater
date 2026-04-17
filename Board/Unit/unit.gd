@@ -1,114 +1,89 @@
-class_name Unit
 extends CharacterBody2D
+class_name Unit
 
-@export var unit_data: UnitData
-@export var board: Node2D
-@onready var animator = $SubViewport/UnitAnimator
-var is_my_turn := false
-var turn := 1
-var speed := 75.0
-var path: Array[Vector2i] = []
-var moving := false
-var has_emitted_stop := false
-var target_world: Vector2
-var current_tile: Vector2i = Vector2i.ZERO
-
+signal turn_finished
 signal turn_started
-signal turn_ended
-signal started_moving
-signal stopped_moving
 
+@onready var state_machine: StateMachine = $StateMachine
+@onready var animator := $SubViewport/UnitAnimator
+
+@export var data: UnitData
+@export var board: Node2D
+
+var current_tile: Vector2i
+var turn: int = 0
+var is_my_turn := false
+var is_player := false
+
+var speed := 75.0
+var target_world: Vector2
+var is_moving := false
 
 func _ready() -> void:
-	turn_started.connect(start_turn)
-	turn_ended.connect(end_turn)
-	unit_data.life_changed.connect(_on_life_changed)
-	unit_data.damaged.connect(_on_damaged)
-	unit_data.initialize()
-	animator.change_animation("Idle")
-	if unit_data.is_player:
-		unit_data.initialize_deck()
-		unit_data.draw_card(3)
+	data.initialize()
+	if data is PlayerData:
+		is_player = true
+		data.initialize_deck()
+		data.draw_card(3)
 	else:
-		$LifeBar.max_value = unit_data.max_life
-		$LifeBar.value = unit_data.current_life
+		$LifeBar.max_value = data.max_life
+		$LifeBar.value = data.current_life
 	
+	data.damaged.connect(_on_damaged)
+	data.life_changed.connect(_on_life_changed)
+	animator.change_animation("Idle")
+
 func setup(start_tile: Vector2i):
 	current_tile = start_tile
 	global_position = board.tile_to_world(current_tile)
 	board.units_position[name] = current_tile
 
-func set_path(new_path: Array[Vector2i]):
-	if new_path.is_empty():
-		return
-
-	path = new_path.duplicate()
-	unit_data.use_pm(path.size())
-	has_emitted_stop = false
-
 func _physics_process(_delta):
-	var from = board.ground.local_to_map(global_position)
-	var to = from
+	if is_moving:
+		var dir = target_world - global_position
 
-	if not is_my_turn:
-		board.move_astar_obstacle(from, to)
-		return
+		if dir.length() > 2:
+			velocity = dir.normalized() * speed
+		else:
+			global_position = target_world
+			velocity = Vector2.ZERO
+			is_moving = false
 
-	if not moving and not path.is_empty():
-		_start_next_step()
-
-	if moving:
-		_process_movement()
-		to = board.ground.local_to_map(target_world)
-		board.units_position[name] = to
 		move_and_slide()
+	board.units_position[name] = current_tile
 
-	if not moving and path.is_empty():
-		if not has_emitted_stop:
-			has_emitted_stop = true
-			stopped_moving.emit()
+func move_to_tile(tile: Vector2i):
+	target_world = board.tile_to_world(tile)
+	current_tile = tile
+	is_moving = true
 
-	board.move_astar_obstacle(from, to)
+func is_arrived() -> bool:
+	return not is_moving
 
-func _start_next_step():
-	var next_tile = path.pop_front()
-
-	if not board.is_walkable(next_tile):
-		path.clear()
-		return
-
-	target_world = board.tile_to_world(next_tile)
-	current_tile = next_tile
-	moving = true
-	started_moving.emit()
-
-func _process_movement():
-	var dir = target_world - global_position
-
-	if dir.length() > 2:
-		velocity = dir.normalized() * speed
-	else:
-		global_position = target_world
-		velocity = Vector2.ZERO
-		moving = false
+func _process(delta):
+	state_machine.update(delta)
 
 func start_turn():
 	is_my_turn = true
-	unit_data.reset_turn_values()
-	turn += 1
+	turn_started.emit()
+	state_machine.change_state("StartTurn")
 
-	if unit_data.is_player:
-		unit_data.draw_card(1)
+func request_move(target_tile: Vector2i):
+	state_machine.change_state("Move", {"target": target_tile})
+
+func request_play_card(card, target):
+	state_machine.change_state("PlayCard", {
+		"card": card,
+		"target": target
+	})
 
 func end_turn():
 	is_my_turn = false
-	$"..".play_next_turn.emit()
-	
-func _on_life_changed(current: int, max: int):
-	if unit_data.is_player : return
-	$LifeBar.max_value = max
-	$LifeBar.value = current
-	
+	turn_finished.emit()
+	state_machine.change_state("EndTurn")
+	get_parent().play_next_turn.emit()
+	turn = turn + 1
+
 func _on_damaged(value: int):
 	var damage_label = $Damage
 	damage_label.text = str(value)
@@ -133,3 +108,8 @@ func _on_damaged(value: int):
 		damage_label.visible = false
 		damage_label.position = Vector2.ZERO
 	)
+
+func _on_life_changed(current: int, max: int):
+	if is_player : return
+	$LifeBar.max_value = max
+	$LifeBar.value = current

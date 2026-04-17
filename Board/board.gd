@@ -2,7 +2,7 @@ extends Node2D
 
 @export var start_pos_player : Vector2i
 @export var start_pos_enemy : Array[Vector2i]
-@export var enemies: Array[Unit]
+@export var enemies: Array[CharacterBody2D]
 var units_position := {}
 @onready var ground = $Ground
 var astar := AStarGrid2D.new()

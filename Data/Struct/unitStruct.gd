@@ -5,7 +5,6 @@ extends Resource
 @export var max_pa := 3
 @export var max_life := 100
 @export var initiative := 10
-@export var is_player: bool = false
 
 @export var current_pm := 0
 @export var current_pa := 0

@@ -8,8 +8,6 @@
 [resource]
 script = ExtResource("4_lbbtb")
 deck = Array[ExtResource("1_1eton")]([ExtResource("2_11smb"), ExtResource("2_11smb"), ExtResource("3_3bi63"), ExtResource("3_3bi63"), ExtResource("3_3bi63"), ExtResource("3_3bi63"), ExtResource("3_3bi63"), ExtResource("3_3bi63"), ExtResource("3_3bi63"), ExtResource("3_3bi63")])
-is_player = true
-current_pm = 5
 current_pa = 3
-current_life = 95
+current_life = 80
 metadata/_custom_type_script = "uid://1jsb7v4as5by"

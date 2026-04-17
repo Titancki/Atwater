@@ -55,6 +55,7 @@ func discard_card_from_draw(card : CardData) -> void :
 func discard_card_from_hand(card : CardData) -> void :
 	hand.erase(card)
 	discard.append(card)
+	hand_changed.emit()
 	save()
 
 func reshuffle_discard_into_draw() -> void:

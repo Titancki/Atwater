@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://dhcngmgmmsmyo"]
 
-[ext_resource type="Texture2D" uid="uid://cty0ql648v5h1" path="res://Board/Unit/mask circle.png" id="1_1s7ge"]
+[ext_resource type="Texture2D" uid="uid://uv2sddslwfw4" path="res://Board/Interface/mask circle.png" id="1_08abo"]
 [ext_resource type="Texture2D" uid="uid://b8kjxqvfw8afm" path="res://Board/Unit/Player/artwork.png" id="2_3auop"]
 [ext_resource type="Script" uid="uid://d1tiq2ssgamss" path="res://Board/Interface/character_min.gd" id="2_08abo"]
 [ext_resource type="FontFile" uid="uid://cfh3kcppxl7ss" path="res://Card/Fonts/Cormorant_SC/CormorantSC-Medium.ttf" id="4_724mr"]
@@ -14,7 +14,7 @@ outline_color = Color(0.08235294, 0.0627451, 0.03529412, 1)
 
 [node name="CharacterMin" type="TextureRect"]
 clip_children = 2
-texture = ExtResource("1_1s7ge")
+texture = ExtResource("1_08abo")
 script = ExtResource("2_08abo")
 
 [node name="Artwork" type="TextureRect" parent="."]

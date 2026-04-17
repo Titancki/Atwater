@@ -5,21 +5,21 @@ extends CanvasLayer
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	character.unit_data.hand_changed.connect(refresh_hand_ui)
+	character.data.hand_changed.connect(refresh_hand_ui)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	$CharInfo/PM/Label.text = "PM %s/%s " % [character.unit_data.current_pm, character.unit_data.max_pm]
-	$CharInfo/PA/Label.text = "PA %s/%s" % [character.unit_data.current_pa, character.unit_data.max_pa]
-	$CharInfo/Life.max_value = character.unit_data.max_life
-	$CharInfo/Life.value = character.unit_data.current_life
-	$Container/Zones/DrawBtn/Label.text = str(character.unit_data.draw.size())
-	$Container/Zones/DiscardBtn/Label.text = str(character.unit_data.discard.size())
-	$Container/Zones/DeckBtn/Label.text = str(character.unit_data.deck.size())
+	$CharInfo/PM/Label.text = "PM %s/%s " % [character.data.current_pm, character.data.max_pm]
+	$CharInfo/PA/Label.text = "PA %s/%s" % [character.data.current_pa, character.data.max_pa]
+	$CharInfo/Life.max_value = character.data.max_life
+	$CharInfo/Life.value = character.data.current_life
+	$Container/Zones/DrawBtn/Label.text = str(character.data.draw.size())
+	$Container/Zones/DiscardBtn/Label.text = str(character.data.discard.size())
+	$Container/Zones/DeckBtn/Label.text = str(character.data.deck.size())
 	
 	
 func refresh_hand_ui():
-	var hand = character.unit_data.hand
+	var hand = character.data.hand
 	var hand_ui = $Container/Hand
 	for card_ui in hand_ui.get_children():
 		card_ui.queue_free()
@@ -29,7 +29,7 @@ func refresh_hand_ui():
 		hand_ui.add_child(card_ui)
 
 func _on_btn_pressed() -> void:
-	character.turn_ended.emit()
+	character.end_turn()
 
 
 func _on_draw_btn_pressed() -> void:

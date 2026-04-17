@@ -1,20 +1,27 @@
-[gd_scene load_steps=27 format=3 uid="uid://o7bc2qcgigfo"]
+[gd_scene load_steps=34 format=3 uid="uid://o7bc2qcgigfo"]
 
-[ext_resource type="Script" uid="uid://kmavld4l51ew" path="res://Board/Unit/unit.gd" id="1_l34k4"]
-[ext_resource type="PackedScene" uid="uid://dgkk6qimr08u1" path="res://Board/Unit/unit_animator.tscn" id="2_6andl"]
-[ext_resource type="Script" uid="uid://nxivn1owywqu" path="res://Board/Unit/Player/controller.gd" id="2_y5cd7"]
-[ext_resource type="Script" uid="uid://cmsg16nxntw24" path="res://Board/Unit/Player/interface.gd" id="4_unbq1"]
-[ext_resource type="Texture2D" uid="uid://bu3pg1sgk3g6x" path="res://Board/Interface/DrawIcon.png" id="5_cl7qv"]
-[ext_resource type="FontFile" uid="uid://c4qkpqf007l2a" path="res://Card/Fonts/Cormorant_SC/CormorantSC-Regular.ttf" id="6_eenkd"]
-[ext_resource type="Texture2D" uid="uid://cnogncw5ibxxo" path="res://Board/Interface/DiscardIcon.png" id="7_vuky1"]
-[ext_resource type="Texture2D" uid="uid://6koigtoux0e4" path="res://Board/Interface/DeckIcon.png" id="8_t7rcg"]
-[ext_resource type="Texture2D" uid="uid://c0uqv7b2p4f3r" path="res://Board/Interface/borderpanelt.png" id="10_v40la"]
-[ext_resource type="Texture2D" uid="uid://cgoatoqwbtdh6" path="res://Board/Interface/small panel.png" id="11_umr5p"]
-[ext_resource type="Texture2D" uid="uid://cro38w2yjsbbc" path="res://Board/Interface/empty gauge.png" id="12_kww3v"]
-[ext_resource type="Texture2D" uid="uid://dr1si8yemx64y" path="res://Board/Interface/modulate gauge.png" id="13_6eye1"]
-[ext_resource type="Texture2D" uid="uid://dodqdvuwix18e" path="res://Board/Interface/turngear.png" id="14_3nu21"]
-[ext_resource type="Texture2D" uid="uid://cq4robnawuoo6" path="res://Board/Interface/AmberBtn.png" id="15_3nj5t"]
-[ext_resource type="LabelSettings" uid="uid://dhj8oy7nk14ca" path="res://Board/Interface/label.tres" id="15_6andl"]
+[ext_resource type="Script" uid="uid://rbid3hkjw7rx" path="res://Board/Unit/unit.gd" id="1_edoni"]
+[ext_resource type="Resource" path="res://Data/Units/player.tres" id="2_hnpgd"]
+[ext_resource type="PackedScene" uid="uid://dgkk6qimr08u1" path="res://Board/Unit/animator/unit_animator.tscn" id="3_7dcqw"]
+[ext_resource type="Script" uid="uid://cmsg16nxntw24" path="res://Board/Unit/Player/interface.gd" id="4_jcap6"]
+[ext_resource type="Texture2D" uid="uid://c0uqv7b2p4f3r" path="res://Board/Interface/borderpanelt.png" id="5_h4ddp"]
+[ext_resource type="Texture2D" uid="uid://bu3pg1sgk3g6x" path="res://Board/Interface/DrawIcon.png" id="6_66atl"]
+[ext_resource type="FontFile" uid="uid://c4qkpqf007l2a" path="res://Card/Fonts/Cormorant_SC/CormorantSC-Regular.ttf" id="7_qicq2"]
+[ext_resource type="Texture2D" uid="uid://cnogncw5ibxxo" path="res://Board/Interface/DiscardIcon.png" id="8_lhhyx"]
+[ext_resource type="Texture2D" uid="uid://6koigtoux0e4" path="res://Board/Interface/DeckIcon.png" id="9_jr6ou"]
+[ext_resource type="Texture2D" uid="uid://cgoatoqwbtdh6" path="res://Board/Interface/small panel.png" id="10_ehny4"]
+[ext_resource type="Texture2D" uid="uid://cro38w2yjsbbc" path="res://Board/Interface/empty gauge.png" id="11_sncdv"]
+[ext_resource type="Texture2D" uid="uid://dr1si8yemx64y" path="res://Board/Interface/modulate gauge.png" id="12_ccywt"]
+[ext_resource type="Texture2D" uid="uid://dodqdvuwix18e" path="res://Board/Interface/turngear.png" id="13_euea1"]
+[ext_resource type="Texture2D" uid="uid://cq4robnawuoo6" path="res://Board/Interface/AmberBtn.png" id="14_fvpdx"]
+[ext_resource type="LabelSettings" uid="uid://dhj8oy7nk14ca" path="res://Board/Interface/label.tres" id="15_s03di"]
+[ext_resource type="Script" uid="uid://dtvxpawgexxu2" path="res://Board/Unit/Player/controller.gd" id="16_1cfe1"]
+[ext_resource type="Script" uid="uid://co8qwt8kw5obj" path="res://Board/Unit/state_machine.gd" id="17_o0uvv"]
+[ext_resource type="Script" uid="uid://cw1hi2ubfwfi7" path="res://Board/Unit/States/idle_state.gd" id="18_6rmwl"]
+[ext_resource type="Script" uid="uid://cns1xercr61y3" path="res://Board/Unit/States/start_turn_state.gd" id="19_lhpng"]
+[ext_resource type="Script" uid="uid://cik5i5es5ycdh" path="res://Board/Unit/States/move_state.gd" id="20_680l4"]
+[ext_resource type="Script" uid="uid://sf32g6nq7kul" path="res://Board/Unit/States/play_card_state.gd" id="21_mw8nk"]
+[ext_resource type="Script" uid="uid://cp4aqe2sxvwpm" path="res://Board/Unit/States/end_turn_state.gd" id="22_hijgk"]
 
 [sub_resource type="Environment" id="Environment_6andl"]
 
@@ -33,29 +40,30 @@ bg_color = Color(0.18431373, 0.14509805, 0.11372549, 1)
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xf67s"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_wpcvc"]
-font = ExtResource("6_eenkd")
+font = ExtResource("7_qicq2")
 font_size = 40
 font_color = Color(0.96323174, 0.8036272, 0.6612902, 1)
 outline_size = 5
 outline_color = Color(0.08235294, 0.0627451, 0.03529412, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_ecbmq"]
-font = ExtResource("6_eenkd")
+font = ExtResource("7_qicq2")
 font_size = 32
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8fo2a"]
-texture = ExtResource("15_3nj5t")
+texture = ExtResource("14_fvpdx")
 
 [sub_resource type="LabelSettings" id="LabelSettings_xwick"]
 font_size = 32
 
-[sub_resource type="LabelSettings" id="LabelSettings_6andl"]
+[sub_resource type="LabelSettings" id="LabelSettings_m8src"]
 outline_size = 4
 outline_color = Color(0, 0, 0, 1)
 
 [node name="Player" type="CharacterBody2D" groups=["allies"]]
 y_sort_enabled = true
-script = ExtResource("1_l34k4")
+script = ExtResource("1_edoni")
+data = ExtResource("2_hnpgd")
 
 [node name="SubViewport" type="SubViewport" parent="."]
 own_world_3d = true
@@ -64,7 +72,7 @@ transparent_bg = true
 scaling_3d_mode = 1
 render_target_update_mode = 4
 
-[node name="UnitAnimator" parent="SubViewport" instance=ExtResource("2_6andl")]
+[node name="UnitAnimator" parent="SubViewport" instance=ExtResource("3_7dcqw")]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewport"]
 transform = Transform3D(0.70710677, 0.49999997, -0.49999997, 0, 0.70710677, 0.70710677, 0.70710677, -0.49999997, 0.49999997, 0, 0, 0)
@@ -74,14 +82,11 @@ scale = Vector2(0.12, 0.12)
 texture = SubResource("ViewportTexture_80kp4")
 offset = Vector2(0, -125)
 
-[node name="Controller" type="Node2D" parent="."]
-script = ExtResource("2_y5cd7")
-
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(4, 4)
 
 [node name="Interface" type="CanvasLayer" parent="."]
-script = ExtResource("4_unbq1")
+script = ExtResource("4_jcap6")
 
 [node name="Container" type="Control" parent="Interface"]
 texture_filter = 1
@@ -122,7 +127,7 @@ anchor_right = 1.0
 offset_bottom = 20.0
 grow_horizontal = 2
 mouse_filter = 2
-texture = ExtResource("10_v40la")
+texture = ExtResource("5_h4ddp")
 stretch_mode = 1
 
 [node name="Zones" type="HBoxContainer" parent="Interface/Container"]
@@ -144,7 +149,7 @@ theme_override_styles/hover = SubResource("StyleBoxEmpty_xf67s")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_xf67s")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_xf67s")
 action_mode = 0
-icon = ExtResource("5_cl7qv")
+icon = ExtResource("6_66atl")
 
 [node name="Label" type="Label" parent="Interface/Container/Zones/DrawBtn"]
 layout_mode = 1
@@ -168,7 +173,7 @@ theme_override_styles/hover = SubResource("StyleBoxEmpty_xf67s")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_xf67s")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_xf67s")
 action_mode = 0
-icon = ExtResource("7_vuky1")
+icon = ExtResource("8_lhhyx")
 
 [node name="Label" type="Label" parent="Interface/Container/Zones/DiscardBtn"]
 layout_mode = 1
@@ -192,7 +197,7 @@ theme_override_styles/hover = SubResource("StyleBoxEmpty_xf67s")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_xf67s")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_xf67s")
 action_mode = 0
-icon = ExtResource("8_t7rcg")
+icon = ExtResource("9_jr6ou")
 
 [node name="Label" type="Label" parent="Interface/Container/Zones/DeckBtn"]
 layout_mode = 1
@@ -234,7 +239,7 @@ offset_top = -24.00003
 offset_right = 210.0
 offset_bottom = 23.99997
 grow_vertical = 2
-texture = ExtResource("11_umr5p")
+texture = ExtResource("10_ehny4")
 
 [node name="Label" type="Label" parent="Interface/CharInfo/PA"]
 layout_mode = 1
@@ -259,7 +264,7 @@ offset_top = -24.000023
 offset_right = 210.0
 offset_bottom = 23.999977
 grow_vertical = 2
-texture = ExtResource("11_umr5p")
+texture = ExtResource("10_ehny4")
 
 [node name="Label" type="Label" parent="Interface/CharInfo/PM"]
 layout_mode = 1
@@ -285,8 +290,8 @@ offset_bottom = 3.5999756
 grow_vertical = 2
 value = 50.0
 fill_mode = 3
-texture_under = ExtResource("12_kww3v")
-texture_progress = ExtResource("13_6eye1")
+texture_under = ExtResource("11_sncdv")
+texture_progress = ExtResource("12_ccywt")
 texture_progress_offset = Vector2(6.5, 35)
 tint_progress = Color(0.6745098, 0.18039216, 0.19215687, 1)
 
@@ -301,7 +306,7 @@ offset_top = -300.0
 grow_horizontal = 0
 grow_vertical = 0
 mouse_filter = 2
-texture = ExtResource("14_3nu21")
+texture = ExtResource("13_euea1")
 expand_mode = 3
 stretch_mode = 4
 
@@ -341,7 +346,7 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "End
 Turn"
-label_settings = ExtResource("15_6andl")
+label_settings = ExtResource("15_s03di")
 
 [node name="Coords" type="Label" parent="Interface"]
 offset_right = 40.0
@@ -360,8 +365,31 @@ offset_right = 20.0
 offset_bottom = -70.0
 grow_horizontal = 2
 text = "777"
-label_settings = SubResource("LabelSettings_6andl")
+label_settings = SubResource("LabelSettings_m8src")
 horizontal_alignment = 1
+
+[node name="Controller" type="Node2D" parent="."]
+script = ExtResource("16_1cfe1")
+metadata/_custom_type_script = "uid://dtvxpawgexxu2"
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("17_o0uvv")
+metadata/_custom_type_script = "uid://co8qwt8kw5obj"
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("18_6rmwl")
+
+[node name="StartTurn" type="Node" parent="StateMachine"]
+script = ExtResource("19_lhpng")
+
+[node name="Move" type="Node" parent="StateMachine"]
+script = ExtResource("20_680l4")
+
+[node name="PlayCard" type="Node" parent="StateMachine"]
+script = ExtResource("21_mw8nk")
+
+[node name="EndTurn" type="Node" parent="StateMachine"]
+script = ExtResource("22_hijgk")
 
 [connection signal="pressed" from="Interface/Container/Zones/DrawBtn" to="Interface" method="_on_draw_btn_pressed"]
 [connection signal="pressed" from="Interface/Container/Zones/DiscardBtn" to="Interface" method="_on_discard_btn_pressed"]

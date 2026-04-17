@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://dyxfh2kd6kbaa"]
+
+[ext_resource type="Texture2D" uid="uid://dlu0ckna786du" path="res://Board/Assets/Isometric Tileset/Isometric-SpriteSheet.png" id="1_01yw1"]
+
+[node name="TestBlock" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_01yw1")
+offset = Vector2(0, -8)
+region_enabled = true
+region_rect = Rect2(0, 0, 32, 32)
