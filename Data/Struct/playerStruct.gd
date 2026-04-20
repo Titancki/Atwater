@@ -17,6 +17,7 @@ func initialize_deck() -> void:
 
 func add_card_to_deck(card : CardData) -> void :
 	deck.append(card)
+	save()
 	
 func remove_card_from_deck(card : CardData) -> void :
 	deck.erase(card)

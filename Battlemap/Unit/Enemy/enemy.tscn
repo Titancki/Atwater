@@ -1,0 +1,112 @@
+[gd_scene load_steps=19 format=3 uid="uid://bcden520mgv3g"]
+
+[ext_resource type="Script" uid="uid://rbid3hkjw7rx" path="res://Battlemap/Unit/unit.gd" id="1_lugno"]
+[ext_resource type="Script" uid="uid://bma5l327rj2fm" path="res://Data/Struct/enemyStruct.gd" id="2_iualm"]
+[ext_resource type="Resource" uid="uid://j2yt8bu1rjwa" path="res://Data/Cards/shot.tres" id="3_ossun"]
+[ext_resource type="PackedScene" uid="uid://dgkk6qimr08u1" path="res://Battlemap/Unit/animator/unit_animator.tscn" id="4_ops4s"]
+[ext_resource type="Script" uid="uid://ch5jc0cvku7lv" path="res://Battlemap/Unit/Enemy/ai.gd" id="5_q0hhl"]
+[ext_resource type="Script" uid="uid://co8qwt8kw5obj" path="res://Battlemap/Unit/state_machine.gd" id="6_t21eo"]
+[ext_resource type="Script" uid="uid://cw1hi2ubfwfi7" path="res://Battlemap/Unit/States/idle_state.gd" id="7_qdt53"]
+[ext_resource type="Script" uid="uid://cns1xercr61y3" path="res://Battlemap/Unit/States/start_turn_state.gd" id="8_w4ofc"]
+[ext_resource type="Script" uid="uid://cik5i5es5ycdh" path="res://Battlemap/Unit/States/move_state.gd" id="9_y446j"]
+[ext_resource type="Script" uid="uid://sf32g6nq7kul" path="res://Battlemap/Unit/States/play_card_state.gd" id="10_umvax"]
+[ext_resource type="Script" uid="uid://cp4aqe2sxvwpm" path="res://Battlemap/Unit/States/end_turn_state.gd" id="11_ldewt"]
+
+[sub_resource type="Resource" id="Resource_ma4ni"]
+script = ExtResource("2_iualm")
+turn_hands = Array[Array]([[ExtResource("3_ossun")]])
+max_pm = 1
+metadata/_custom_type_script = "uid://bma5l327rj2fm"
+
+[sub_resource type="Environment" id="Environment_o6bvm"]
+ambient_light_color = Color(0.11304883, 0.11304883, 0.11304883, 1)
+
+[sub_resource type="World3D" id="World3D_o6bvm"]
+environment = SubResource("Environment_o6bvm")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_h87k2"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="LabelSettings" id="LabelSettings_o6bvm"]
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uqjhw"]
+draw_center = false
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.10643435, 0.009445065, 0.014638144, 1)
+border_blend = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lveat"]
+bg_color = Color(0.40544224, 0.095053755, 0.12025488, 1)
+
+[node name="Enemy" type="CharacterBody2D"]
+script = ExtResource("1_lugno")
+data = SubResource("Resource_ma4ni")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+own_world_3d = true
+world_3d = SubResource("World3D_o6bvm")
+transparent_bg = true
+use_occlusion_culling = true
+scaling_3d_mode = 1
+vrs_mode = 2
+vrs_update_mode = 2
+render_target_update_mode = 4
+
+[node name="UnitAnimator" parent="SubViewport" instance=ExtResource("4_ops4s")]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.12, 0.12)
+texture = SubResource("ViewportTexture_h87k2")
+offset = Vector2(0, -125)
+
+[node name="Damage" type="Label" parent="."]
+visible = false
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_top = -70.0
+offset_right = 20.0
+offset_bottom = -70.0
+grow_horizontal = 2
+text = "777"
+label_settings = SubResource("LabelSettings_o6bvm")
+horizontal_alignment = 1
+
+[node name="LifeBar" type="ProgressBar" parent="."]
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 5.0
+grow_horizontal = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_uqjhw")
+theme_override_styles/fill = SubResource("StyleBoxFlat_lveat")
+show_percentage = false
+
+[node name="AI" type="Node" parent="."]
+script = ExtResource("5_q0hhl")
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("6_t21eo")
+metadata/_custom_type_script = "uid://co8qwt8kw5obj"
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("7_qdt53")
+
+[node name="StartTurn" type="Node" parent="StateMachine"]
+script = ExtResource("8_w4ofc")
+
+[node name="Move" type="Node" parent="StateMachine"]
+script = ExtResource("9_y446j")
+
+[node name="PlayCard" type="Node" parent="StateMachine"]
+script = ExtResource("10_umvax")
+
+[node name="EndTurn" type="Node" parent="StateMachine"]
+script = ExtResource("11_ldewt")

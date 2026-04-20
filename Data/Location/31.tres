@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="LocationData" load_steps=2 format=3 uid="uid://dj8bicbmcxdxh"]
+
+[ext_resource type="Script" uid="uid://c1ghd08jmdbni" path="res://Data/Struct/locationStruct.gd" id="1_ji0jb"]
+
+[resource]
+script = ExtResource("1_ji0jb")
+node_index = 31
+loc_name = "Brass Heights Foot"
+connected_loc_indexes = Array[int]([30, 32])
+metadata/_custom_type_script = "uid://c1ghd08jmdbni"

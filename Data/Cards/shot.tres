@@ -19,7 +19,7 @@ metadata/_custom_type_script = "uid://dwe281xdkdxi5"
 [resource]
 script = ExtResource("1_hsi6m")
 card_name = "Shot"
-card_cost = 2
+card_cost = 1
 description = "Shoot a bullet to an enemy into range."
 artwork = ExtResource("1_l2cg0")
 tags = Array[ExtResource("2_l2cg0")]([SubResource("Resource_hsi6m"), SubResource("Resource_l2cg0")])

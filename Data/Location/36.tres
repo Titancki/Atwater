@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="LocationData" load_steps=2 format=3 uid="uid://bpypbh4gsc3tn"]
+
+[ext_resource type="Script" uid="uid://c1ghd08jmdbni" path="res://Data/Struct/locationStruct.gd" id="1_i702r"]
+
+[resource]
+script = ExtResource("1_i702r")
+node_index = 36
+loc_name = "Cog Depth Core"
+connected_loc_indexes = Array[int]([25])
+metadata/_custom_type_script = "uid://c1ghd08jmdbni"

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="LocationData" load_steps=2 format=3 uid="uid://beqm8fsoecxw8"]
+
+[ext_resource type="Script" uid="uid://c1ghd08jmdbni" path="res://Data/Struct/locationStruct.gd" id="1_oxoph"]
+
+[resource]
+script = ExtResource("1_oxoph")
+node_index = 20
+loc_name = "Central Plains South East"
+connected_loc_indexes = Array[int]([16, 21, 24])
+metadata/_custom_type_script = "uid://c1ghd08jmdbni"

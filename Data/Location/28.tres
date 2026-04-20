@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="LocationData" load_steps=2 format=3 uid="uid://br82w3f7g4fxe"]
+
+[ext_resource type="Script" uid="uid://c1ghd08jmdbni" path="res://Data/Struct/locationStruct.gd" id="1_bdxek"]
+
+[resource]
+script = ExtResource("1_bdxek")
+node_index = 28
+loc_name = "Automafall South West 1"
+connected_loc_indexes = Array[int]([27, 29])
+metadata/_custom_type_script = "uid://c1ghd08jmdbni"

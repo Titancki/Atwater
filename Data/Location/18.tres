@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="LocationData" load_steps=2 format=3 uid="uid://jf8bwsiar7pj"]
+
+[ext_resource type="Script" uid="uid://c1ghd08jmdbni" path="res://Data/Struct/locationStruct.gd" id="1_1ymoe"]
+
+[resource]
+script = ExtResource("1_1ymoe")
+node_index = 18
+loc_name = "Firerock Approach"
+connected_loc_indexes = Array[int]([1, 2, 19, 17])
+metadata/_custom_type_script = "uid://c1ghd08jmdbni"

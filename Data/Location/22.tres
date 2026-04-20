@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="LocationData" load_steps=2 format=3 uid="uid://byrvayt1r38y4"]
+
+[ext_resource type="Script" uid="uid://c1ghd08jmdbni" path="res://Data/Struct/locationStruct.gd" id="1_3gbwe"]
+
+[resource]
+script = ExtResource("1_3gbwe")
+node_index = 22
+loc_name = "Automafall"
+connected_loc_indexes = Array[int]([15, 21, 23, 27, 8, 1])
+metadata/_custom_type_script = "uid://c1ghd08jmdbni"

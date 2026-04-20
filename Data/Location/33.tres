@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="LocationData" load_steps=2 format=3 uid="uid://b2rj5v6r7j0ny"]
+
+[ext_resource type="Script" uid="uid://c1ghd08jmdbni" path="res://Data/Struct/locationStruct.gd" id="1_gfehh"]
+
+[resource]
+script = ExtResource("1_gfehh")
+node_index = 33
+loc_name = "Mizzlefort"
+connected_loc_indexes = Array[int]([1, 34])
+metadata/_custom_type_script = "uid://c1ghd08jmdbni"

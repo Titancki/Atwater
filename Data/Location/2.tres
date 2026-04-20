@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="LocationData" load_steps=2 format=3 uid="uid://bwnh0e2uwtb4f"]
+
+[ext_resource type="Script" uid="uid://c1ghd08jmdbni" path="res://Data/Struct/locationStruct.gd" id="1_nfhsu"]
+
+[resource]
+script = ExtResource("1_nfhsu")
+node_index = 2
+loc_name = "Dusk Forest East 1"
+connected_loc_indexes = Array[int]([4, 3, 18, 17])
+metadata/_custom_type_script = "uid://c1ghd08jmdbni"

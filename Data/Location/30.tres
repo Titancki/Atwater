@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="LocationData" load_steps=2 format=3 uid="uid://b4wofbpg2ffc7"]
+
+[ext_resource type="Script" uid="uid://c1ghd08jmdbni" path="res://Data/Struct/locationStruct.gd" id="1_x5vm8"]
+
+[resource]
+script = ExtResource("1_x5vm8")
+node_index = 30
+loc_name = "Brasstead"
+connected_loc_indexes = Array[int]([1, 31])
+metadata/_custom_type_script = "uid://c1ghd08jmdbni"

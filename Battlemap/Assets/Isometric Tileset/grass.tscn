@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://difra3ok41hlf"]
+
+[ext_resource type="Texture2D" uid="uid://x5qlwa2ocfx" path="res://Battlemap/Assets/Isometric Tileset/spritesheet.png" id="1_o06te"]
+
+[node name="Grass" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_o06te")
+region_enabled = true
+region_rect = Rect2(64, 64, 32, 32)

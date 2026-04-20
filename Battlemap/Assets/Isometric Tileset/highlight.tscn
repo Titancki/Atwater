@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://1fqpux4ascve"]
+
+[ext_resource type="Texture2D" uid="uid://braanvnttk4fr" path="res://Battlemap/Assets/Isometric Tileset/hoverlay.png" id="1_y540b"]
+
+[node name="Highlight" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_y540b")
