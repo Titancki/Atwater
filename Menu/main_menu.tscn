@@ -1,0 +1,144 @@
+[gd_scene load_steps=9 format=3 uid="uid://dlco728egmlc1"]
+
+[ext_resource type="Texture2D" uid="uid://2lrfemlpx01c" path="res://WorldMap/Assets/water.png" id="1_ci1se"]
+[ext_resource type="Script" uid="uid://du3u72lewhyfx" path="res://Menu/main_menu.gd" id="1_ohgnh"]
+[ext_resource type="FontFile" uid="uid://cfh3kcppxl7ss" path="res://Card/Fonts/Cormorant_SC/CormorantSC-Medium.ttf" id="1_sla5p"]
+[ext_resource type="Texture2D" uid="uid://b3a17cffmfflu" path="res://Menu/Assets/backpanel.png" id="3_ohgnh"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dtkyu"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.101960786, 0.101960786, 0.101960786, 0.4117647)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ohgnh"]
+texture = ExtResource("3_ohgnh")
+texture_margin_left = 48.0
+texture_margin_top = 48.0
+texture_margin_right = 48.0
+texture_margin_bottom = 48.0
+expand_margin_left = 48.0
+expand_margin_top = 48.0
+expand_margin_right = 48.0
+expand_margin_bottom = 48.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_ci1se"]
+font = ExtResource("1_sla5p")
+font_size = 64
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 2
+shadow_color = Color(0.15686275, 0.15686275, 0.15686275, 0.98039216)
+shadow_offset = Vector2(2, 2)
+
+[sub_resource type="LabelSettings" id="LabelSettings_dtkyu"]
+font = ExtResource("1_sla5p")
+font_size = 32
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 2
+shadow_color = Color(0.15686275, 0.15686275, 0.15686275, 0.98039216)
+shadow_offset = Vector2(2, 2)
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ohgnh")
+
+[node name="TextRectBgMap" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_ci1se")
+expand_mode = 3
+stretch_mode = 6
+
+[node name="PanelOverlay" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_dtkyu")
+
+[node name="MenuContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.38
+anchor_top = 0.3
+anchor_right = 0.62
+anchor_bottom = 0.7
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_ohgnh")
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.3
+anchor_right = 0.5
+anchor_bottom = 0.35
+offset_left = -124.5
+offset_right = 124.5
+offset_bottom = 78.999985
+grow_horizontal = 2
+text = "Atwater"
+label_settings = SubResource("LabelSettings_ci1se")
+
+[node name="Title2" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.3
+anchor_right = 0.5
+anchor_bottom = 0.3
+offset_left = -172.5
+offset_top = 63.999985
+offset_right = 172.5
+offset_bottom = 103.999985
+grow_horizontal = 2
+text = "- Tactical deckbuilder -"
+label_settings = SubResource("LabelSettings_dtkyu")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.4
+anchor_top = 0.45
+anchor_right = 0.6
+anchor_bottom = 0.65
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ButtonStart" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Start Game"
+
+[node name="ButtonManufacture" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Manufacture"
+
+[node name="ButtonOption" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Option"
+
+[node name="ButtonExit" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Exit Game"
+
+[connection signal="pressed" from="VBoxContainer/ButtonStart" to="." method="_on_button_start_pressed"]

@@ -6,6 +6,7 @@ extends UnitData
 var draw : Array[CardData] = []
 var discard : Array[CardData] = []
 var hand : Array[CardData] = []
+var current_location : LocationData = LocationLoader.loc_1
 signal hand_changed
 
 func initialize_deck() -> void:
@@ -66,6 +67,11 @@ func reshuffle_discard_into_draw() -> void:
 	draw = discard.duplicate()
 	discard.clear()
 	draw.shuffle()
+
+func change_location_by_index(index) -> void:
+	var new_loc = LocationLoader.get("loc_%s" % index)
+	current_location = new_loc
+	save()
 
 func save() -> void :
 	ResourceSaver.save(self, "res://Data/Units/player.tres")

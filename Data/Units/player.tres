@@ -1,9 +1,9 @@
-[gd_resource type="Resource" script_class="PlayerData" load_steps=5 format=3 uid="uid://e2sao8jdttnf"]
+[gd_resource type="Resource" script_class="PlayerData" load_steps=5 format=3]
 
-[ext_resource type="Script" uid="uid://w2q1k8pof41t" path="res://Data/Struct/cardStruct.gd" id="1_1eton"]
-[ext_resource type="Resource" uid="uid://ca3edn5aeky18" path="res://Data/Cards/block.tres" id="2_11smb"]
-[ext_resource type="Resource" uid="uid://j2yt8bu1rjwa" path="res://Data/Cards/shot.tres" id="3_3bi63"]
-[ext_resource type="Script" uid="uid://1jsb7v4as5by" path="res://Data/Struct/playerStruct.gd" id="4_lbbtb"]
+[ext_resource type="Script" path="res://Data/Struct/cardStruct.gd" id="1_1eton"]
+[ext_resource type="Resource" path="res://Data/Cards/block.tres" id="2_11smb"]
+[ext_resource type="Resource" path="res://Data/Cards/shot.tres" id="3_3bi63"]
+[ext_resource type="Script" path="res://Data/Struct/playerStruct.gd" id="4_lbbtb"]
 
 [resource]
 script = ExtResource("4_lbbtb")

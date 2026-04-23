@@ -1,0 +1,28 @@
+[gd_scene load_steps=2 format=3 uid="uid://dh3c0vsaoukd5"]
+
+[ext_resource type="Script" uid="uid://dk813b6nxgkeh" path="res://Encounter/encounter.gd" id="1_wnpq1"]
+
+[node name="Encounter" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wnpq1")
+
+[node name="ContainerChoices" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.3
+anchor_top = 0.3
+anchor_right = 0.7
+anchor_bottom = 0.7
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Fight" type="Button" parent="ContainerChoices"]
+layout_mode = 2
+text = "Fight"
+
+[connection signal="pressed" from="ContainerChoices/Fight" to="." method="_on_fight_pressed"]

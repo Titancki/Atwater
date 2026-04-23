@@ -48,3 +48,8 @@ func _on_shift_finished() -> void:
 	turn_order.push_back(unit)
 	turn_order[0].start_turn()
 	
+
+
+func _on_button_pressed() -> void:
+	# Debug only
+	get_node("/root/Game/LevelManager").change_scene("world_map")

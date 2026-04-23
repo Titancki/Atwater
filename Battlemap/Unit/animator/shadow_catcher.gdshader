@@ -1,27 +1,24 @@
-shader_type spatial;
+shader_type canvas_item;
 
-render_mode unshaded, cull_disabled, depth_draw_opaque, blend_mix;
-
-uniform float ground_y = 0.0;
-uniform float opacity : hint_range(0.0, 1.0) = 0.4;
-uniform vec3 shadow_offset = vec3(0.0, 0.0, 0.0);
-
-void vertex() {
-    vec3 world_pos = (MODEL_MATRIX * vec4(-VERTEX, 1.0)).xyz;
-
-    world_pos += shadow_offset;
-
-    vec3 cam_dir = normalize(world_pos - CAMERA_POSITION_WORLD);
-
-    float t = (world_pos.y - ground_y) / cam_dir.y;
-    world_pos += cam_dir * t;
-
-    world_pos.y = ground_y + 0.01;
-
-    VERTEX = (INV_VIEW_MATRIX * vec4(world_pos, 1.0)).xyz;
-}
+uniform float speed = 0.05;
+uniform float strength = 5.0;
+uniform float scale = 20.0;
 
 void fragment() {
-    ALBEDO = vec3(0.0);
-    ALPHA = opacity;
+    vec2 uv = UV;
+
+    // Wave distortion
+    float wave = sin(uv.y * scale + TIME * speed) * 0.01;
+    uv.x += wave * strength;
+
+    float wave2 = cos(uv.x * scale * 0.7 + TIME * speed * 1.3) * 0.01;
+    uv.y += wave2 * strength;
+
+    vec4 color = texture(TEXTURE, uv);
+
+    // Optional: slight shimmer
+    float shimmer = sin(TIME + uv.x * 10.0) * 0.05;
+    color.rgb += shimmer;
+
+    COLOR = color;
 }

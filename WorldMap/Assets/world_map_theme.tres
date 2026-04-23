@@ -1,0 +1,23 @@
+[gd_resource type="Theme" load_steps=7 format=3 uid="uid://bo10jmory5ddo"]
+
+[ext_resource type="FontFile" uid="uid://bgx0fgd446yhr" path="res://Card/Fonts/Corben/Corben-Regular.ttf" id="1_u8ldr"]
+[ext_resource type="Texture2D" uid="uid://dvipvk1p5p1r2" path="res://WorldMap/Assets/MapPin.png" id="2_l3kgg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lo5ge"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_a8aku"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_u8ldr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_l3kgg"]
+
+[resource]
+Button/colors/font_outline_color = Color(0, 0, 0, 1)
+Button/constants/outline_size = 4
+Button/font_sizes/font_size = 18
+Button/fonts/font = ExtResource("1_u8ldr")
+Button/icons/icon = ExtResource("2_l3kgg")
+Button/styles/focus = SubResource("StyleBoxEmpty_lo5ge")
+Button/styles/hover = SubResource("StyleBoxEmpty_a8aku")
+Button/styles/normal = SubResource("StyleBoxEmpty_u8ldr")
+Button/styles/pressed = SubResource("StyleBoxEmpty_l3kgg")

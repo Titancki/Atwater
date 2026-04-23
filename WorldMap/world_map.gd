@@ -6,6 +6,7 @@ extends Control
 var last_loc_index : int = 1
 var current_location_data : LocationData
 var is_traveling : bool = false
+var player : PlayerData = load("res://Data/Units/player.tres")
 
 signal on_node_changed
 
@@ -13,14 +14,25 @@ signal on_node_changed
 func _ready() -> void:
 	on_node_changed.connect(update_travellable_nodes)
 
-	# Init current location
-	current_location_data = LocationLoader.get_by_index(current_loc_index)
+	current_location_data = player.current_location
+	current_loc_index = current_location_data.node_index
+	last_loc_index = current_loc_index
+	$CurrentLocation/Label.text = current_location_data.loc_name
 
 	for node_btn : Button in $TravelNodes.get_children():
 		var index = int(node_btn.name.replace("TravelNode", ""))
 		node_btn.pressed.connect(travel_node_pressed.bind(index))
+		node_btn.mouse_entered.connect(travel_node_hovered_in.bind(int(node_btn.name)))
+		node_btn.mouse_exited.connect(travel_node_hovered_out)
+		node_btn.text = LocationLoader.get_by_index(index).loc_name
 
 	update_travellable_nodes()
+	$LocationDot.position = $TravelNodes.get_node("TravelNode%s" % current_loc_index).position
+	
+func _input(_event: InputEvent) -> void:
+	if Input.is_action_just_pressed("Interract"):
+		$Regions.visible = not $Regions.visible
+		$TravelNodes.visible = not $TravelNodes.visible
 
 func travel_node_pressed(loc_index : int):
 	if is_traveling:
@@ -29,6 +41,7 @@ func travel_node_pressed(loc_index : int):
 	last_loc_index = current_loc_index
 	current_loc_index = loc_index
 	current_location_data = LocationLoader.get_by_index(loc_index)
+	player.change_location_by_index(loc_index)
 
 	var route_data = get_route_path(last_loc_index, current_loc_index)
 
@@ -39,9 +52,29 @@ func travel_node_pressed(loc_index : int):
 		await move_along_path(route_data.path, route_data.reversed)
 
 		$TravelNodes.mouse_filter = Control.MOUSE_FILTER_STOP
+		for node in $TravelNodes.get_children(): node.modulate = Color(1.0,1.0,1.0,1.0)
 		is_traveling = false
 
 	on_node_changed.emit()
+	get_node("/root/Game/LevelManager").change_scene("encounter")
+
+func travel_node_hovered_in(loc_index : int) :
+	if is_traveling:
+		return
+
+	for node in $TravelNodes.get_children():
+		var node_index = int(node.name.replace("TravelNode", ""))
+		if node_index == loc_index: continue
+		var tween = create_tween()
+		tween.tween_property(node, "modulate:a", 0.0, 0.15)
+
+func travel_node_hovered_out() :
+	if is_traveling:
+		return
+
+	for node in $TravelNodes.get_children():
+		var tween = create_tween()
+		tween.tween_property(node, "modulate:a", 1.0, 0.15)
 
 func get_route_path(from : int, to : int) -> Dictionary:
 	var forward_name = "%s-%s" % [from, to]
@@ -84,6 +117,8 @@ func move_along_path(path : Path2D, reversed : bool):
 	# Snap to final position (avoid precision issues)
 	var final_t := 0.0 if reversed else 1.0
 	$LocationDot.position = curve.sample_baked(final_t * length) + dot_offset
+	
+	$CurrentLocation/Label.text = current_location_data.loc_name
 
 func update_travellable_nodes():
 	if current_location_data == null:
@@ -98,3 +133,4 @@ func update_travellable_nodes():
 			var is_reachable = index in reachable
 
 			node.disabled = not is_reachable
+			node.visible = is_reachable
