@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=10 format=3 uid="uid://duhydhxxiknan"]
+
+[ext_resource type="Script" uid="uid://btca07v42fca6" path="res://Data/Struct/Behavior/behaviourStruct.gd" id="1_46vmc"]
+[ext_resource type="Script" uid="uid://cbq82s17dwdck" path="res://Data/Struct/Behavior/damageBehaviorStruct.gd" id="2_tfxos"]
+[ext_resource type="Script" uid="uid://d1lmin6ttmpai" path="res://Data/Struct/Behavior/behaviorValueStruct.gd" id="3_6bghx"]
+[ext_resource type="Script" uid="uid://cbmqnge7w6e" path="res://Data/Struct/Behavior/rangeBehaviorStruct.gd" id="4_ashjh"]
+[ext_resource type="Script" uid="uid://w2q1k8pof41t" path="res://Data/Struct/cardStruct.gd" id="5_hyp3e"]
+
+[sub_resource type="Resource" id="Resource_46vmc"]
+script = ExtResource("3_6bghx")
+amount = "3"
+
+[sub_resource type="Resource" id="Resource_tfxos"]
+script = ExtResource("2_tfxos")
+value = SubResource("Resource_46vmc")
+
+[sub_resource type="Resource" id="Resource_6bghx"]
+script = ExtResource("3_6bghx")
+amount = "1"
+
+[sub_resource type="Resource" id="Resource_ashjh"]
+script = ExtResource("4_ashjh")
+value = SubResource("Resource_6bghx")
+
+[resource]
+script = ExtResource("5_hyp3e")
+id = 15
+card_name = "Jab"
+card_cost = 1
+description = "Do a quick jab, dealing {damage} damage"
+behaviors = Array[ExtResource("1_46vmc")]([SubResource("Resource_tfxos"), SubResource("Resource_ashjh")])

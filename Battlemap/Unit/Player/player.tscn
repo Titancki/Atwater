@@ -1,7 +1,6 @@
-[gd_scene load_steps=31 format=3 uid="uid://o7bc2qcgigfo"]
+[gd_scene load_steps=30 format=3 uid="uid://o7bc2qcgigfo"]
 
 [ext_resource type="Script" uid="uid://rbid3hkjw7rx" path="res://Battlemap/Unit/unit.gd" id="1_edoni"]
-[ext_resource type="Resource" uid="uid://b8h2s7eypjw4l" path="res://Data/Units/player.tres" id="2_hnpgd"]
 [ext_resource type="PackedScene" uid="uid://dgkk6qimr08u1" path="res://Battlemap/Unit/animator/unit_animator.tscn" id="3_7dcqw"]
 [ext_resource type="Script" uid="uid://cmsg16nxntw24" path="res://Battlemap/Unit/Player/interface.gd" id="4_jcap6"]
 [ext_resource type="Texture2D" uid="uid://c0uqv7b2p4f3r" path="res://Battlemap/Interface/borderpanelt.png" id="5_h4ddp"]
@@ -55,11 +54,11 @@ outline_color = Color(0, 0, 0, 1)
 [node name="Player" type="CharacterBody2D" groups=["allies"]]
 y_sort_enabled = true
 script = ExtResource("1_edoni")
-data = ExtResource("2_hnpgd")
 
 [node name="SubViewport" type="SubViewport" parent="."]
 own_world_3d = true
 transparent_bg = true
+handle_input_locally = false
 scaling_3d_mode = 1
 render_target_update_mode = 4
 
@@ -97,6 +96,7 @@ anchor_bottom = 1.0
 offset_bottom = -6.1035156e-05
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="Background" type="Panel" parent="Interface/Container/Control"]
 layout_mode = 1
@@ -356,7 +356,7 @@ text = "777"
 label_settings = SubResource("LabelSettings_m8src")
 horizontal_alignment = 1
 
-[node name="Controller" type="Node2D" parent="."]
+[node name="Controller" type="Node2D" parent="." groups=["controller"]]
 script = ExtResource("16_1cfe1")
 metadata/_custom_type_script = "uid://dtvxpawgexxu2"
 

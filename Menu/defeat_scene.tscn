@@ -1,0 +1,46 @@
+[gd_scene load_steps=5 format=3 uid="uid://b2yvgqm6eng2p"]
+
+[ext_resource type="Theme" uid="uid://bkfxnya26oi5o" path="res://Card/theme.tres" id="1_27r0u"]
+[ext_resource type="Script" uid="uid://8g02rcb6nb0s" path="res://Menu/defeat_scene.gd" id="2_m1skh"]
+[ext_resource type="FontFile" uid="uid://cfh3kcppxl7ss" path="res://Card/Fonts/Cormorant_SC/CormorantSC-Medium.ttf" id="2_nvx8q"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_m1skh"]
+font = ExtResource("2_nvx8q")
+font_size = 48
+
+[node name="Defeat" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_27r0u")
+script = ExtResource("2_m1skh")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -123.5
+offset_top = -55.5
+offset_right = 123.5
+offset_bottom = 55.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 200
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "You lost"
+label_settings = SubResource("LabelSettings_m1skh")
+horizontal_alignment = 1
+
+[node name="ButtonBackMenu" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Go back to menu"
+
+[connection signal="pressed" from="VBoxContainer/ButtonBackMenu" to="." method="_on_button_back_menu_pressed"]

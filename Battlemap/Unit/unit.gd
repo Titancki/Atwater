@@ -3,6 +3,7 @@ class_name Unit
 
 signal turn_finished
 signal turn_started
+signal died
 
 @onready var state_machine: StateMachine = $StateMachine
 @onready var animator := $SubViewport/UnitAnimator
@@ -24,7 +25,6 @@ func _ready() -> void:
 	if data is PlayerData:
 		is_player = true
 		data.initialize_deck()
-		data.draw_card(3)
 	else:
 		$LifeBar.max_value = data.max_life
 		$LifeBar.value = data.current_life
@@ -50,7 +50,8 @@ func _physics_process(_delta):
 			is_moving = false
 
 		move_and_slide()
-	board.units_position[name] = current_tile
+	if board:
+		board.units_position[name] = current_tile
 
 func move_to_tile(tile: Vector2i):
 	target_world = board.tile_to_world(tile)
@@ -110,6 +111,16 @@ func _on_damaged(value: int):
 	)
 
 func _on_life_changed(current: int, max: int):
+	if current <= 0 : _die()
 	if is_player : return
 	$LifeBar.max_value = max
 	$LifeBar.value = current
+		
+func _die():
+	animator.player.play("Death01")
+	await get_tree().create_timer(2.5).timeout
+	if is_player: 
+		pass
+	else:
+		queue_free()
+	died.emit()

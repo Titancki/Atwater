@@ -1,0 +1,41 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=13 format=3 uid="uid://besvbghnud4oa"]
+
+[ext_resource type="Script" uid="uid://btca07v42fca6" path="res://Data/Struct/Behavior/behaviourStruct.gd" id="1_ioqje"]
+[ext_resource type="Script" uid="uid://b0ogtoop4goqk" path="res://Data/Struct/Behavior/aoeBehaviorStruct.gd" id="2_c0ft2"]
+[ext_resource type="Script" uid="uid://d1lmin6ttmpai" path="res://Data/Struct/Behavior/behaviorValueStruct.gd" id="3_2ikuj"]
+[ext_resource type="Script" uid="uid://cene6ue7py8d6" path="res://Data/Struct/Behavior/armourBehaviorStruct.gd" id="4_q23xb"]
+[ext_resource type="Script" uid="uid://cbq82s17dwdck" path="res://Data/Struct/Behavior/damageBehaviorStruct.gd" id="5_4os8b"]
+[ext_resource type="Script" uid="uid://w2q1k8pof41t" path="res://Data/Struct/cardStruct.gd" id="6_o6si7"]
+
+[sub_resource type="Resource" id="Resource_sn2rx"]
+script = ExtResource("3_2ikuj")
+amount = "3"
+
+[sub_resource type="Resource" id="Resource_iiyym"]
+script = ExtResource("2_c0ft2")
+value = SubResource("Resource_sn2rx")
+
+[sub_resource type="Resource" id="Resource_yb62s"]
+script = ExtResource("3_2ikuj")
+amount = "armour"
+multiplier = "-0.5"
+
+[sub_resource type="Resource" id="Resource_e8v8r"]
+script = ExtResource("4_q23xb")
+value = SubResource("Resource_yb62s")
+
+[sub_resource type="Resource" id="Resource_ptnyv"]
+script = ExtResource("3_2ikuj")
+amount = "armour"
+
+[sub_resource type="Resource" id="Resource_tq123"]
+script = ExtResource("5_4os8b")
+value = SubResource("Resource_ptnyv")
+
+[resource]
+script = ExtResource("6_o6si7")
+id = 6
+card_name = "Armour explosion"
+card_cost = 3
+description = "Sacrify half of your armour. Make it explode in a {aoe} cell radius around you."
+behaviors = Array[ExtResource("1_ioqje")]([SubResource("Resource_iiyym"), SubResource("Resource_e8v8r"), SubResource("Resource_tq123")])

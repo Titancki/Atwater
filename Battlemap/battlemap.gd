@@ -15,6 +15,8 @@ func _ready():
 		enemies[i].setup(start_pos_enemy[i])
 	setup_astar()
 
+
+
 func world_to_tile(world_pos: Vector2) -> Vector2i:
 	var local = ground.to_local(world_pos)
 	return ground.local_to_map(local)

@@ -26,10 +26,16 @@ window/size/viewport_width=1920
 window/size/viewport_height=1024
 window/stretch/mode="viewport"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/ApiImporter/plugin.cfg")
+
 [global_group]
 
 allies=""
 board=""
+controller=""
+enemies=""
 
 [input]
 

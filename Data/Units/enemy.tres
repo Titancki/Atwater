@@ -1,10 +1,11 @@
-[gd_resource type="Resource" script_class="EnemyData" load_steps=3 format=3 uid="uid://cj8h4s5x01sg2"]
+[gd_resource type="Resource" script_class="EnemyData" load_steps=4 format=3 uid="uid://cj8h4s5x01sg2"]
 
 [ext_resource type="Script" uid="uid://bma5l327rj2fm" path="res://Data/Struct/enemyStruct.gd" id="1_8h5dv"]
-[ext_resource type="Resource" uid="uid://j2yt8bu1rjwa" path="res://Data/Cards/shot.tres" id="2_662hb"]
+[ext_resource type="Resource" uid="uid://duhydhxxiknan" path="res://Data/Cards/15_Jab.tres" id="2_mjlwn"]
+[ext_resource type="Resource" uid="uid://cd0fyxuiq4aov" path="res://Data/Cards/17_Uppercut.tres" id="3_8qk6v"]
 
 [resource]
 script = ExtResource("1_8h5dv")
-turn_hands = Array[Array]([[ExtResource("2_662hb")]])
-max_pm = 1
+turn_hands = Array[Array]([[ExtResource("2_mjlwn"), ExtResource("2_mjlwn")], [ExtResource("3_8qk6v")]])
+max_pm = 2
 metadata/_custom_type_script = "uid://bma5l327rj2fm"

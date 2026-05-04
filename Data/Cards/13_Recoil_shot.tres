@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=10 format=3 uid="uid://c5six4rwlq7te"]
+
+[ext_resource type="Script" uid="uid://btca07v42fca6" path="res://Data/Struct/Behavior/behaviourStruct.gd" id="1_jn112"]
+[ext_resource type="Script" uid="uid://vb6ni135nlmr" path="res://Data/Struct/Behavior/attractBehaviorStruct.gd" id="2_8wb8p"]
+[ext_resource type="Script" uid="uid://d1lmin6ttmpai" path="res://Data/Struct/Behavior/behaviorValueStruct.gd" id="3_jc1qt"]
+[ext_resource type="Script" uid="uid://cbmqnge7w6e" path="res://Data/Struct/Behavior/rangeBehaviorStruct.gd" id="4_whtqm"]
+[ext_resource type="Script" uid="uid://w2q1k8pof41t" path="res://Data/Struct/cardStruct.gd" id="5_dw6me"]
+
+[sub_resource type="Resource" id="Resource_jn112"]
+script = ExtResource("3_jc1qt")
+amount = "4"
+multiplier = "-1"
+
+[sub_resource type="Resource" id="Resource_8wb8p"]
+script = ExtResource("2_8wb8p")
+value = SubResource("Resource_jn112")
+
+[sub_resource type="Resource" id="Resource_jc1qt"]
+script = ExtResource("3_jc1qt")
+amount = "2"
+
+[sub_resource type="Resource" id="Resource_whtqm"]
+script = ExtResource("4_whtqm")
+value = SubResource("Resource_jc1qt")
+
+[resource]
+script = ExtResource("5_dw6me")
+id = 13
+card_name = "Recoil shot"
+card_cost = 1
+description = "Shoot a target up to {range} cells away, pushing it back {attract} cells away."
+behaviors = Array[ExtResource("1_jn112")]([SubResource("Resource_8wb8p"), SubResource("Resource_whtqm")])

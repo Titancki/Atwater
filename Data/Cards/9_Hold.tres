@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=10 format=3 uid="uid://dy72uy72o3jvu"]
+
+[ext_resource type="Script" uid="uid://btca07v42fca6" path="res://Data/Struct/Behavior/behaviourStruct.gd" id="1_w8gmm"]
+[ext_resource type="Script" uid="uid://cn8mb38m3agn3" path="res://Data/Struct/Behavior/drawBehaviorStruct.gd" id="2_bdhfd"]
+[ext_resource type="Script" uid="uid://d1lmin6ttmpai" path="res://Data/Struct/Behavior/behaviorValueStruct.gd" id="3_3sic7"]
+[ext_resource type="Script" uid="uid://ndu6v8fpjx7b" path="res://Data/Struct/Behavior/moveBehaviorStruct.gd" id="4_3fvmr"]
+[ext_resource type="Script" uid="uid://w2q1k8pof41t" path="res://Data/Struct/cardStruct.gd" id="5_f3nk7"]
+
+[sub_resource type="Resource" id="Resource_w8gmm"]
+script = ExtResource("3_3sic7")
+amount = "1"
+
+[sub_resource type="Resource" id="Resource_bdhfd"]
+script = ExtResource("2_bdhfd")
+value = SubResource("Resource_w8gmm")
+
+[sub_resource type="Resource" id="Resource_3sic7"]
+script = ExtResource("3_3sic7")
+amount = "2"
+multiplier = "-1"
+
+[sub_resource type="Resource" id="Resource_3fvmr"]
+script = ExtResource("4_3fvmr")
+value = SubResource("Resource_3sic7")
+
+[resource]
+script = ExtResource("5_f3nk7")
+id = 9
+card_name = "Hold"
+description = "Loose {move} PM. Draw {draw} a card"
+behaviors = Array[ExtResource("1_w8gmm")]([SubResource("Resource_bdhfd"), SubResource("Resource_3fvmr")])

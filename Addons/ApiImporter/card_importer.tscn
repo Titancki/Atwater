@@ -1,0 +1,392 @@
+[gd_scene load_steps=27 format=3 uid="uid://cuabvyjfaa3pm"]
+
+[ext_resource type="Theme" uid="uid://dp80nm2l6q4aj" path="res://Addons/ApiImporter/theme.tres" id="1_cpudb"]
+[ext_resource type="Script" uid="uid://bbo5jsa06n30f" path="res://Addons/ApiImporter/card_importer.gd" id="2_cckoh"]
+[ext_resource type="Script" uid="uid://xxtawmq2ppgq" path="res://Card/card.gd" id="3_tdt5x"]
+[ext_resource type="Resource" uid="uid://j2yt8bu1rjwa" path="res://Data/Cards/shot.tres" id="4_owifi"]
+[ext_resource type="Texture2D" uid="uid://ut7grda0mu31" path="res://Card/Assets/CardV2_bg.png" id="5_lhlb8"]
+[ext_resource type="FontFile" uid="uid://cdvr0ufabypr2" path="res://Card/Fonts/Coda/Coda-Regular.ttf" id="6_77lq6"]
+[ext_resource type="Texture2D" uid="uid://73s2sc8pb6co" path="res://Card/Assets/overlay_magiccog.png" id="7_2wmuk"]
+[ext_resource type="Texture2D" uid="uid://cmrqhwd7v3qgg" path="res://Card/Artwork/quickshot.png" id="8_gwuug"]
+[ext_resource type="Texture2D" uid="uid://cx31owdal3j8n" path="res://Card/Assets/Icons/damage.png" id="9_7ryod"]
+[ext_resource type="Texture2D" uid="uid://cyihlnsrgqu5x" path="res://Card/Assets/Icons/range.png" id="10_6hjvi"]
+[ext_resource type="FontFile" uid="uid://cfh3kcppxl7ss" path="res://Card/Fonts/Cormorant_SC/CormorantSC-Medium.ttf" id="11_5lroy"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pl7pi"]
+bg_color = Color(0.124082975, 0.124082975, 0.1240829, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_12mds"]
+content_margin_left = 50.0
+content_margin_top = 10.0
+bg_color = Color(0.22115508, 0.45776337, 0.47178972, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_av14j"]
+font_size = 48
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tfroq"]
+content_margin_left = 25.0
+bg_color = Color(0.23872098, 0.46804708, 0.06927218, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_63f5k"]
+content_margin_left = 25.0
+content_margin_top = 25.0
+content_margin_right = 25.0
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_av14j"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cckoh"]
+content_margin_left = 25.0
+content_margin_top = 5.0
+content_margin_right = 25.0
+content_margin_bottom = 5.0
+bg_color = Color(0.12156863, 0.28235295, 0.2901961, 1)
+border_width_bottom = 4
+border_color = Color(0.064577684, 0.17508239, 0.18069822, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_3nhlb"]
+font = ExtResource("6_77lq6")
+font_size = 48
+font_color = Color(0.9372549, 0.88235295, 0.76862746, 1)
+shadow_color = Color(0, 0, 0, 0.3372549)
+
+[sub_resource type="LabelSettings" id="LabelSettings_psajq"]
+font = ExtResource("6_77lq6")
+font_size = 30
+font_color = Color(0.9372549, 0.88235295, 0.76862746, 1)
+shadow_color = Color(0, 0, 0, 0.3372549)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vraon"]
+texture = ExtResource("7_2wmuk")
+region_rect = Rect2(-24, 0, 200, 88)
+
+[sub_resource type="LabelSettings" id="LabelSettings_3agk4"]
+font = ExtResource("6_77lq6")
+font_size = 22
+font_color = Color(0.9372549, 0.88235295, 0.76862746, 1)
+shadow_color = Color(0, 0, 0, 0.3372549)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cjtlu"]
+content_margin_left = 60.0
+content_margin_top = 0.0
+content_margin_right = 60.0
+content_margin_bottom = 0.0
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+draw_center = false
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="LabelSettings" id="LabelSettings_wnd84"]
+font = ExtResource("6_77lq6")
+font_size = 20
+font_color = Color(0.18431373, 0.14509805, 0.11372549, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tkfnx"]
+content_margin_left = 60.0
+content_margin_top = 0.0
+content_margin_right = 60.0
+content_margin_bottom = 70.0
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+draw_center = false
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="LabelSettings" id="LabelSettings_dhrth"]
+font = ExtResource("11_5lroy")
+font_size = 20
+font_color = Color(0.18431373, 0.14509805, 0.11372549, 1)
+
+[node name="CardImporter" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("1_cpudb")
+script = ExtResource("2_cckoh")
+
+[node name="BG" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_pl7pi")
+metadata/_edit_lock_ = true
+
+[node name="VBoxMain" type="VBoxContainer" parent="BG"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Title" type="PanelContainer" parent="BG/VBoxMain"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_12mds")
+
+[node name="Label" type="Label" parent="BG/VBoxMain/Title"]
+layout_mode = 2
+text = "API Card Importer"
+label_settings = SubResource("LabelSettings_av14j")
+
+[node name="Info" type="PanelContainer" parent="BG/VBoxMain"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_tfroq")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BG/VBoxMain/Info"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="BG/VBoxMain/Info/VBoxContainer"]
+visible = false
+layout_mode = 2
+text = "info"
+
+[node name="PanelContainer" type="PanelContainer" parent="BG/VBoxMain"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_63f5k")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BG/VBoxMain/PanelContainer"]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BG/VBoxMain/PanelContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="BG/VBoxMain/PanelContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_av14j")
+
+[node name="VBoxContainer" type="HBoxContainer" parent="BG/VBoxMain/PanelContainer/HBoxContainer/VBoxContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="ButtonFetchApi" type="Button" parent="BG/VBoxMain/PanelContainer/HBoxContainer/VBoxContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Import from api"
+alignment = 0
+
+[node name="CheckCurrent" type="CheckButton" parent="BG/VBoxMain/PanelContainer/HBoxContainer/VBoxContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+button_pressed = true
+text = "Show current cards"
+
+[node name="CheckUpdated" type="CheckButton" parent="BG/VBoxMain/PanelContainer/HBoxContainer/VBoxContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+button_pressed = true
+text = "Show updated cards"
+
+[node name="CheckNew" type="CheckButton" parent="BG/VBoxMain/PanelContainer/HBoxContainer/VBoxContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+button_pressed = true
+text = "Show new cards"
+
+[node name="PanelHeadRow" type="PanelContainer" parent="BG/VBoxMain/PanelContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_cckoh")
+
+[node name="HBoxRow" type="HBoxContainer" parent="BG/VBoxMain/PanelContainer/HBoxContainer/VBoxContainer/PanelHeadRow"]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="BG/VBoxMain/PanelContainer/HBoxContainer/VBoxContainer/PanelHeadRow/HBoxRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Name"
+
+[node name="Category" type="Label" parent="BG/VBoxMain/PanelContainer/HBoxContainer/VBoxContainer/PanelHeadRow/HBoxRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Category"
+
+[node name="Cost" type="Label" parent="BG/VBoxMain/PanelContainer/HBoxContainer/VBoxContainer/PanelHeadRow/HBoxRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Cost"
+
+[node name="Actions" type="Label" parent="BG/VBoxMain/PanelContainer/HBoxContainer/VBoxContainer/PanelHeadRow/HBoxRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Actions"
+
+[node name="ScrollTable" type="ScrollContainer" parent="BG/VBoxMain/PanelContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxCardTable" type="VBoxContainer" parent="BG/VBoxMain/PanelContainer/HBoxContainer/VBoxContainer/ScrollTable"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = -1
+
+[node name="Control" type="Control" parent="BG/VBoxMain/PanelContainer/HBoxContainer"]
+custom_minimum_size = Vector2(400, 640)
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="CardPreview" type="Control" parent="BG/VBoxMain/PanelContainer/HBoxContainer/Control"]
+z_index = 1
+z_as_relative = false
+texture_filter = 1
+custom_minimum_size = Vector2(400, 640)
+anchors_preset = 0
+offset_right = 200.0
+offset_bottom = 320.0
+script = ExtResource("3_tdt5x")
+data = ExtResource("4_owifi")
+enabled_zoom = false
+
+[node name="Visual" type="Control" parent="BG/VBoxMain/PanelContainer/HBoxContainer/Control/CardPreview"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(200, 320)
+mouse_filter = 2
+
+[node name="TextureRect" type="TextureRect" parent="BG/VBoxMain/PanelContainer/HBoxContainer/Control/CardPreview/Visual"]
+custom_minimum_size = Vector2(200, 320)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("5_lhlb8")
+stretch_mode = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BG/VBoxMain/PanelContainer/HBoxContainer/Control/CardPreview/Visual"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = -6
+
+[node name="HBoxHeader" type="HBoxContainer" parent="BG/VBoxMain/PanelContainer/HBoxContainer/Control/CardPreview/Visual/VBoxContainer"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Cost" type="Label" parent="BG/VBoxMain/PanelContainer/HBoxContainer/Control/CardPreview/Visual/VBoxContainer/HBoxHeader"]
+custom_minimum_size = Vector2(68, 0)
+layout_mode = 2
+text = "1"
+label_settings = SubResource("LabelSettings_3nhlb")
+horizontal_alignment = 1
+
+[node name="Title" type="Label" parent="BG/VBoxMain/PanelContainer/HBoxContainer/Control/CardPreview/Visual/VBoxContainer/HBoxHeader"]
+layout_mode = 2
+text = "Shot"
+label_settings = SubResource("LabelSettings_psajq")
+
+[node name="PanelArtwork" type="PanelContainer" parent="BG/VBoxMain/PanelContainer/HBoxContainer/Control/CardPreview/Visual/VBoxContainer"]
+texture_filter = 5
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_vraon")
+
+[node name="TextureArtwork" type="TextureRect" parent="BG/VBoxMain/PanelContainer/HBoxContainer/Control/CardPreview/Visual/VBoxContainer/PanelArtwork"]
+custom_minimum_size = Vector2(200, 180)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("8_gwuug")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="HBoxTypes" type="HBoxContainer" parent="BG/VBoxMain/PanelContainer/HBoxContainer/Control/CardPreview/Visual/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Offset" type="Control" parent="BG/VBoxMain/PanelContainer/HBoxContainer/Control/CardPreview/Visual/VBoxContainer/HBoxTypes"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="BG/VBoxMain/PanelContainer/HBoxContainer/Control/CardPreview/Visual/VBoxContainer/HBoxTypes"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Pistol"
+label_settings = SubResource("LabelSettings_3agk4")
+
+[node name="HBoxIcons" type="HBoxContainer" parent="BG/VBoxMain/PanelContainer/HBoxContainer/Control/CardPreview/Visual/VBoxContainer/HBoxTypes"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 0
+
+[node name="TextureIcon" type="TextureRect" parent="BG/VBoxMain/PanelContainer/HBoxContainer/Control/CardPreview/Visual/VBoxContainer/HBoxTypes/HBoxIcons"]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("9_7ryod")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextureIcon2" type="TextureRect" parent="BG/VBoxMain/PanelContainer/HBoxContainer/Control/CardPreview/Visual/VBoxContainer/HBoxTypes/HBoxIcons"]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("10_6hjvi")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Offset2" type="Control" parent="BG/VBoxMain/PanelContainer/HBoxContainer/Control/CardPreview/Visual/VBoxContainer/HBoxTypes"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="BG/VBoxMain/PanelContainer/HBoxContainer/Control/CardPreview/Visual/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_cjtlu")
+
+[node name="Description" type="Label" parent="BG/VBoxMain/PanelContainer/HBoxContainer/Control/CardPreview/Visual/VBoxContainer/PanelContainer"]
+custom_minimum_size = Vector2(0, 115)
+layout_mode = 2
+size_flags_vertical = 1
+text = "Shoot a bullet to an enemy into range."
+label_settings = SubResource("LabelSettings_wnd84")
+autowrap_mode = 3
+
+[node name="PanelFlavour" type="PanelContainer" parent="BG/VBoxMain/PanelContainer/HBoxContainer/Control/CardPreview/Visual/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_tkfnx")
+
+[node name="Flavour" type="Label" parent="BG/VBoxMain/PanelContainer/HBoxContainer/Control/CardPreview/Visual/VBoxContainer/PanelFlavour"]
+layout_mode = 2
+text = "\"Flavour\""
+label_settings = SubResource("LabelSettings_dhrth")
+
+[connection signal="pressed" from="BG/VBoxMain/PanelContainer/HBoxContainer/VBoxContainer/PanelContainer/VBoxContainer/ButtonFetchApi" to="." method="_on_button_fetch_api_pressed"]
+[connection signal="toggled" from="BG/VBoxMain/PanelContainer/HBoxContainer/VBoxContainer/PanelContainer/VBoxContainer/CheckCurrent" to="." method="_on_check_current_toggled"]
+[connection signal="toggled" from="BG/VBoxMain/PanelContainer/HBoxContainer/VBoxContainer/PanelContainer/VBoxContainer/CheckUpdated" to="." method="_on_check_updated_toggled"]
+[connection signal="toggled" from="BG/VBoxMain/PanelContainer/HBoxContainer/VBoxContainer/PanelContainer/VBoxContainer/CheckNew" to="." method="_on_check_new_toggled"]

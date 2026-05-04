@@ -1,13 +1,19 @@
-[gd_resource type="Resource" script_class="PlayerData" load_steps=5 format=3]
+[gd_resource type="Resource" script_class="PlayerData" load_steps=10 format=3]
 
 [ext_resource type="Script" path="res://Data/Struct/cardStruct.gd" id="1_1eton"]
-[ext_resource type="Resource" path="res://Data/Cards/block.tres" id="2_11smb"]
-[ext_resource type="Resource" path="res://Data/Cards/shot.tres" id="3_3bi63"]
+[ext_resource type="Resource" path="res://Data/Location/1.tres" id="1_eflad"]
+[ext_resource type="Resource" path="res://Data/Cards/1_Quick_shot.tres" id="2_yx1tw"]
+[ext_resource type="Resource" path="res://Data/Cards/2_Double_Tap.tres" id="3_eflad"]
+[ext_resource type="Resource" path="res://Data/Cards/12_Mortar.tres" id="4_3q04i"]
 [ext_resource type="Script" path="res://Data/Struct/playerStruct.gd" id="4_lbbtb"]
+[ext_resource type="Resource" path="res://Data/Cards/15_Jab.tres" id="5_fktbw"]
+[ext_resource type="Resource" path="res://Data/Cards/10_Reload.tres" id="6_pgyfm"]
+[ext_resource type="Resource" path="res://Data/Cards/3_Fortify.tres" id="7_g1c4e"]
 
 [resource]
 script = ExtResource("4_lbbtb")
-deck = Array[ExtResource("1_1eton")]([ExtResource("2_11smb"), ExtResource("2_11smb"), ExtResource("3_3bi63"), ExtResource("3_3bi63"), ExtResource("3_3bi63"), ExtResource("3_3bi63"), ExtResource("3_3bi63"), ExtResource("3_3bi63"), ExtResource("3_3bi63"), ExtResource("3_3bi63")])
+deck = Array[ExtResource("1_1eton")]([ExtResource("2_yx1tw"), ExtResource("2_yx1tw"), ExtResource("3_eflad"), ExtResource("3_eflad"), ExtResource("4_3q04i"), ExtResource("5_fktbw"), ExtResource("5_fktbw"), ExtResource("5_fktbw"), ExtResource("6_pgyfm"), ExtResource("7_g1c4e"), ExtResource("7_g1c4e"), ExtResource("7_g1c4e")])
+current_location = ExtResource("1_eflad")
 current_pm = 5
 current_pa = 3
 current_life = 100

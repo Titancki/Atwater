@@ -1,0 +1,40 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=13 format=3 uid="uid://b4ct1pjlasjjf"]
+
+[ext_resource type="Script" uid="uid://btca07v42fca6" path="res://Data/Struct/Behavior/behaviourStruct.gd" id="1_8sdhf"]
+[ext_resource type="Script" uid="uid://b0ogtoop4goqk" path="res://Data/Struct/Behavior/aoeBehaviorStruct.gd" id="2_sk52m"]
+[ext_resource type="Script" uid="uid://d1lmin6ttmpai" path="res://Data/Struct/Behavior/behaviorValueStruct.gd" id="3_0cav7"]
+[ext_resource type="Script" uid="uid://cbq82s17dwdck" path="res://Data/Struct/Behavior/damageBehaviorStruct.gd" id="4_tp60u"]
+[ext_resource type="Script" uid="uid://cbmqnge7w6e" path="res://Data/Struct/Behavior/rangeBehaviorStruct.gd" id="5_nkdgn"]
+[ext_resource type="Script" uid="uid://w2q1k8pof41t" path="res://Data/Struct/cardStruct.gd" id="6_kyg70"]
+
+[sub_resource type="Resource" id="Resource_8sdhf"]
+script = ExtResource("3_0cav7")
+amount = "20"
+
+[sub_resource type="Resource" id="Resource_sk52m"]
+script = ExtResource("2_sk52m")
+value = SubResource("Resource_8sdhf")
+
+[sub_resource type="Resource" id="Resource_0cav7"]
+script = ExtResource("3_0cav7")
+amount = "4"
+
+[sub_resource type="Resource" id="Resource_tp60u"]
+script = ExtResource("4_tp60u")
+value = SubResource("Resource_0cav7")
+
+[sub_resource type="Resource" id="Resource_nkdgn"]
+script = ExtResource("3_0cav7")
+amount = "1"
+
+[sub_resource type="Resource" id="Resource_kyg70"]
+script = ExtResource("5_nkdgn")
+value = SubResource("Resource_nkdgn")
+
+[resource]
+script = ExtResource("6_kyg70")
+id = 11
+card_name = "Piercing Round"
+card_cost = 1
+description = "Shoot in a line, hitting all target in a {aoe} tile range dealing {damage} damage."
+behaviors = Array[ExtResource("1_8sdhf")]([SubResource("Resource_sk52m"), SubResource("Resource_tp60u"), SubResource("Resource_kyg70")])

@@ -20,7 +20,7 @@ func enter(data = {}):
 
 	unit.animator.change_animation("Pistol_Shoot")
 	unit.data.use_pa(card.card_cost)
-	card.play(target.data)
+	card.play($"../..".data, target.data)
 	await get_tree().create_timer(0.67).timeout
 	if unit.is_player:
 		unit.data.discard_card_from_hand(card)

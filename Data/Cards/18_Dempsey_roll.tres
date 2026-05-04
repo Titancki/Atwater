@@ -1,0 +1,41 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=13 format=3 uid="uid://cmq4a44535bmb"]
+
+[ext_resource type="Script" uid="uid://btca07v42fca6" path="res://Data/Struct/Behavior/behaviourStruct.gd" id="1_gtixx"]
+[ext_resource type="Script" uid="uid://cbq82s17dwdck" path="res://Data/Struct/Behavior/damageBehaviorStruct.gd" id="2_r263v"]
+[ext_resource type="Script" uid="uid://d1lmin6ttmpai" path="res://Data/Struct/Behavior/behaviorValueStruct.gd" id="3_78wn1"]
+[ext_resource type="Script" uid="uid://806bdegxssif" path="res://Data/Struct/Behavior/echoBehaviorStruct.gd" id="4_0083m"]
+[ext_resource type="Script" uid="uid://cbmqnge7w6e" path="res://Data/Struct/Behavior/rangeBehaviorStruct.gd" id="5_n8gm1"]
+[ext_resource type="Script" uid="uid://w2q1k8pof41t" path="res://Data/Struct/cardStruct.gd" id="6_orhnv"]
+
+[sub_resource type="Resource" id="Resource_72tgj"]
+script = ExtResource("3_78wn1")
+amount = "5"
+
+[sub_resource type="Resource" id="Resource_b4ith"]
+script = ExtResource("2_r263v")
+value = SubResource("Resource_72tgj")
+
+[sub_resource type="Resource" id="Resource_8gjym"]
+script = ExtResource("3_78wn1")
+amount = "played_card_turn"
+
+[sub_resource type="Resource" id="Resource_hedas"]
+script = ExtResource("4_0083m")
+value = SubResource("Resource_8gjym")
+
+[sub_resource type="Resource" id="Resource_yqi70"]
+script = ExtResource("3_78wn1")
+amount = "1"
+
+[sub_resource type="Resource" id="Resource_2oo6c"]
+script = ExtResource("5_n8gm1")
+value = SubResource("Resource_yqi70")
+
+[resource]
+script = ExtResource("6_orhnv")
+id = 18
+card_name = "Dempsey roll"
+card_cost = 2
+description = "Hit a target, dealing {damage} damage.
+Reapeat 1 additional time for each card played this turn."
+behaviors = Array[ExtResource("1_gtixx")]([SubResource("Resource_b4ith"), SubResource("Resource_hedas"), SubResource("Resource_2oo6c")])

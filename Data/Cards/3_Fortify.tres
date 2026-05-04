@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=7 format=3 uid="uid://b1h75tsp202a3"]
+
+[ext_resource type="Script" uid="uid://btca07v42fca6" path="res://Data/Struct/Behavior/behaviourStruct.gd" id="1_dsljv"]
+[ext_resource type="Script" uid="uid://cene6ue7py8d6" path="res://Data/Struct/Behavior/armourBehaviorStruct.gd" id="2_6qrdy"]
+[ext_resource type="Script" uid="uid://d1lmin6ttmpai" path="res://Data/Struct/Behavior/behaviorValueStruct.gd" id="3_s8cae"]
+[ext_resource type="Script" uid="uid://w2q1k8pof41t" path="res://Data/Struct/cardStruct.gd" id="4_80kiu"]
+
+[sub_resource type="Resource" id="Resource_kj71v"]
+script = ExtResource("3_s8cae")
+amount = "8"
+
+[sub_resource type="Resource" id="Resource_204em"]
+script = ExtResource("2_6qrdy")
+value = SubResource("Resource_kj71v")
+
+[resource]
+script = ExtResource("4_80kiu")
+id = 3
+card_name = "Fortify"
+card_cost = 1
+description = "Gain {armour} armour"
+behaviors = Array[ExtResource("1_dsljv")]([SubResource("Resource_204em")])

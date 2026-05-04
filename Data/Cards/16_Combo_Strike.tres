@@ -1,0 +1,43 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=13 format=3 uid="uid://dnp0ydgpavg6m"]
+
+[ext_resource type="Script" uid="uid://btca07v42fca6" path="res://Data/Struct/Behavior/behaviourStruct.gd" id="1_67xed"]
+[ext_resource type="Script" uid="uid://cbq82s17dwdck" path="res://Data/Struct/Behavior/damageBehaviorStruct.gd" id="2_beddm"]
+[ext_resource type="Script" uid="uid://d1lmin6ttmpai" path="res://Data/Struct/Behavior/behaviorValueStruct.gd" id="3_mqodi"]
+[ext_resource type="Script" uid="uid://cbmqnge7w6e" path="res://Data/Struct/Behavior/rangeBehaviorStruct.gd" id="4_b1ogo"]
+[ext_resource type="Script" uid="uid://doy3y1ipwii0l" path="res://Data/Struct/Behavior/stunBehaviorStruct.gd" id="5_xdvbx"]
+[ext_resource type="Script" uid="uid://w2q1k8pof41t" path="res://Data/Struct/cardStruct.gd" id="6_t2p1i"]
+
+[sub_resource type="Resource" id="Resource_67xed"]
+script = ExtResource("3_mqodi")
+amount = "4"
+multiplier = "card_played_turn"
+
+[sub_resource type="Resource" id="Resource_beddm"]
+script = ExtResource("2_beddm")
+value = SubResource("Resource_67xed")
+
+[sub_resource type="Resource" id="Resource_mqodi"]
+script = ExtResource("3_mqodi")
+amount = "1"
+
+[sub_resource type="Resource" id="Resource_b1ogo"]
+script = ExtResource("4_b1ogo")
+value = SubResource("Resource_mqodi")
+
+[sub_resource type="Resource" id="Resource_xdvbx"]
+script = ExtResource("3_mqodi")
+amount = "5"
+multiplier = "card_played_turn"
+
+[sub_resource type="Resource" id="Resource_t2p1i"]
+script = ExtResource("5_xdvbx")
+value = SubResource("Resource_xdvbx")
+
+[resource]
+script = ExtResource("6_t2p1i")
+id = 16
+card_name = "Combo Strike"
+card_cost = 1
+description = "Hit an enemy dealing {damage} damage. Have {stun}% chance to stun target.
+Increase damage and stun chance for each card played this turn."
+behaviors = Array[ExtResource("1_67xed")]([SubResource("Resource_beddm"), SubResource("Resource_b1ogo"), SubResource("Resource_t2p1i")])

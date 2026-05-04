@@ -1,0 +1,2 @@
+class_name BuffBehavior
+extends Behavior

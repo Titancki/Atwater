@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=10 format=3 uid="uid://cd0fyxuiq4aov"]
+
+[ext_resource type="Script" uid="uid://btca07v42fca6" path="res://Data/Struct/Behavior/behaviourStruct.gd" id="1_2gpc1"]
+[ext_resource type="Script" uid="uid://cbq82s17dwdck" path="res://Data/Struct/Behavior/damageBehaviorStruct.gd" id="2_hmp7s"]
+[ext_resource type="Script" uid="uid://d1lmin6ttmpai" path="res://Data/Struct/Behavior/behaviorValueStruct.gd" id="3_s8rhh"]
+[ext_resource type="Script" uid="uid://cbmqnge7w6e" path="res://Data/Struct/Behavior/rangeBehaviorStruct.gd" id="4_rr1ye"]
+[ext_resource type="Script" uid="uid://w2q1k8pof41t" path="res://Data/Struct/cardStruct.gd" id="5_x1hrt"]
+
+[sub_resource type="Resource" id="Resource_32tp3"]
+script = ExtResource("3_s8rhh")
+amount = "5"
+
+[sub_resource type="Resource" id="Resource_3rvnf"]
+script = ExtResource("2_hmp7s")
+value = SubResource("Resource_32tp3")
+
+[sub_resource type="Resource" id="Resource_l02r0"]
+script = ExtResource("3_s8rhh")
+amount = "1"
+
+[sub_resource type="Resource" id="Resource_8hgl8"]
+script = ExtResource("4_rr1ye")
+value = SubResource("Resource_l02r0")
+
+[resource]
+script = ExtResource("5_x1hrt")
+id = 17
+card_name = "Uppercut"
+card_cost = 1
+description = "Hit an enemy dealing {damage} damage. Double the damage if the target is stunned."
+behaviors = Array[ExtResource("1_2gpc1")]([SubResource("Resource_3rvnf"), SubResource("Resource_8hgl8")])

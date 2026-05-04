@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=7 format=3 uid="uid://15okdga0ks6t"]
+
+[ext_resource type="Script" uid="uid://btca07v42fca6" path="res://Data/Struct/Behavior/behaviourStruct.gd" id="1_4ly45"]
+[ext_resource type="Script" uid="uid://cene6ue7py8d6" path="res://Data/Struct/Behavior/armourBehaviorStruct.gd" id="2_4p0lh"]
+[ext_resource type="Script" uid="uid://d1lmin6ttmpai" path="res://Data/Struct/Behavior/behaviorValueStruct.gd" id="3_1kxsq"]
+[ext_resource type="Script" uid="uid://w2q1k8pof41t" path="res://Data/Struct/cardStruct.gd" id="4_6ps7q"]
+
+[sub_resource type="Resource" id="Resource_n7eb8"]
+script = ExtResource("3_1kxsq")
+amount = "6"
+multiplier = ""
+
+[sub_resource type="Resource" id="Resource_20lid"]
+script = ExtResource("2_4p0lh")
+value = SubResource("Resource_n7eb8")
+
+[resource]
+script = ExtResource("4_6ps7q")
+id = 4
+card_name = "Reinforced Plating"
+card_cost = 1
+description = "WIP
+Gain {armour} armour. Gain 4 additional if you already have armour."
+behaviors = Array[ExtResource("1_4ly45")]([SubResource("Resource_20lid")])

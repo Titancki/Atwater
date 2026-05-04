@@ -1,0 +1,52 @@
+[gd_scene load_steps=3 format=3 uid="uid://4x2rkh02xu6l"]
+
+[ext_resource type="Script" uid="uid://dvd2bo6ivwtp2" path="res://Addons/ApiImporter/row.gd" id="1_hpai1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4ocy8"]
+content_margin_left = 25.0
+content_margin_top = 5.0
+content_margin_right = 25.0
+content_margin_bottom = 5.0
+bg_color = Color(0.3133042, 0.3133042, 0.3133042, 1)
+
+[node name="PanelRow" type="PanelContainer"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 41.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_4ocy8")
+script = ExtResource("1_hpai1")
+
+[node name="HBoxRow" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="HBoxRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Name"
+
+[node name="Category" type="Label" parent="HBoxRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Category"
+
+[node name="Cost" type="Label" parent="HBoxRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Cost"
+
+[node name="HBoxActions" type="HBoxContainer" parent="HBoxRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ButtonImport" type="Button" parent="HBoxRow/HBoxActions"]
+layout_mode = 2
+text = "Import"
+
+[node name="ButtonPreview" type="Button" parent="HBoxRow/HBoxActions"]
+layout_mode = 2
+text = "Preview"
+
+[connection signal="pressed" from="HBoxRow/HBoxActions/ButtonImport" to="." method="_on_button_import_pressed"]
+[connection signal="pressed" from="HBoxRow/HBoxActions/ButtonPreview" to="." method="_on_button_preview_pressed"]

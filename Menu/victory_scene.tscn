@@ -1,0 +1,59 @@
+[gd_scene load_steps=4 format=3 uid="uid://xq2hg44qk801"]
+
+[ext_resource type="Theme" uid="uid://bkfxnya26oi5o" path="res://Card/theme.tres" id="1_igj6l"]
+[ext_resource type="Script" uid="uid://dhaq2m4uv6xg5" path="res://Menu/victory_scene.gd" id="2_g7p7l"]
+[ext_resource type="PackedScene" uid="uid://bustvwvwqfoh8" path="res://Card/card.tscn" id="3_60njk"]
+
+[node name="VictoryScene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_igj6l")
+script = ExtResource("2_g7p7l")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -304.0
+offset_top = -200.0
+offset_right = 304.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 32
+
+[node name="HBoxReward" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxCard" type="VBoxContainer" parent="VBoxContainer/HBoxReward"]
+layout_mode = 2
+
+[node name="Card" parent="VBoxContainer/HBoxReward/VBoxCard" instance=ExtResource("3_60njk")]
+layout_mode = 2
+
+[node name="VBoxCard2" type="VBoxContainer" parent="VBoxContainer/HBoxReward"]
+layout_mode = 2
+theme_override_constants/separation = -50
+
+[node name="Card" parent="VBoxContainer/HBoxReward/VBoxCard2" instance=ExtResource("3_60njk")]
+layout_mode = 2
+
+[node name="VBoxCard3" type="VBoxContainer" parent="VBoxContainer/HBoxReward"]
+layout_mode = 2
+theme_override_constants/separation = -50
+
+[node name="Card" parent="VBoxContainer/HBoxReward/VBoxCard3" instance=ExtResource("3_60njk")]
+layout_mode = 2
+
+[node name="ButtonContinue" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Continue"
+
+[connection signal="pressed" from="VBoxContainer/ButtonContinue" to="." method="_on_button_continue_pressed"]

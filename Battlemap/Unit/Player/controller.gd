@@ -1,15 +1,14 @@
 extends Node2D
-class_name Controller
 
 @onready var unit = $".."
 @onready var highlight_target = $"../../../Highlight"
 @onready var highlight_info = $"../../../Highlight2"
 @onready var hand = $"../Interface/Container/Hand"
 
-var preview_path: Array[Vector2i] = []
-var hovered_card: Control = null
 var selected_card: Control = null
 var preview_range_tiles: Array[Vector2i] = []
+var preview_path: Array[Vector2i] = []
+
 enum Mode {
 	IDLE,
 	MOVE_PREVIEW,
@@ -17,6 +16,17 @@ enum Mode {
 }
 var mode: Mode = Mode.IDLE
 
+func _ready():
+	unit.data.hand_changed.connect(_connect_cards)
+
+func _connect_cards():
+	for card in hand.get_children():
+		if not card.pressed.is_connected(_on_card_pressed):
+			card.pressed.connect(_on_card_pressed)
+
+# ------------------------
+# INPUT (only world now)
+# ------------------------
 
 func _input(event):
 	if not unit.is_my_turn:
@@ -30,13 +40,6 @@ func _input(event):
 				if event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
 					_enter_move_preview()
 
-				elif event.button_index == MOUSE_BUTTON_LEFT and event.pressed and hovered_card:
-					var card = get_card_under_mouse()
-					if card:
-						selected_card = card
-						_enter_playing()
-						preview_play(card)
-
 			Mode.MOVE_PREVIEW:
 				if event.button_index == MOUSE_BUTTON_RIGHT and not event.pressed:
 					_enter_idle()
@@ -45,19 +48,52 @@ func _input(event):
 					if Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
 						_confirm_move()
 						_enter_idle()
-			
+
 			Mode.PLAYING:
 				if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-					var target = get_target_unit_under_mouse()
-					var unit_data = unit.data
-					var card_data = selected_card.data
-
-					if target and unit_data.current_pa >= card_data.card_cost:
-						unit.request_play_card(card_data, target)
-						_enter_idle()
+					_try_play_card()
 
 				elif event.button_index == MOUSE_BUTTON_RIGHT:
 					_enter_idle()
+
+
+# ------------------------
+# CARD INTERACTION
+# ------------------------
+
+func _on_card_pressed(card):
+	if mode != Mode.IDLE:
+		return
+
+	if not card.is_playable():
+		return
+
+	selected_card = card
+	_enter_playing()
+	preview_play(card)
+
+
+func _try_play_card():
+	if not selected_card:
+		return
+
+	var target = get_target_unit_under_mouse()
+	if not target:
+		return
+
+	var unit_data = unit.data
+	var card_data = selected_card.data
+
+	if unit_data.current_pa < card_data.card_cost:
+		return
+
+	unit.request_play_card(card_data, target)
+	_enter_idle()
+
+
+# ------------------------
+# PROCESS
+# ------------------------
 
 func _process(_delta):
 	if not unit.is_my_turn:
@@ -69,13 +105,17 @@ func _process(_delta):
 	match mode:
 		Mode.IDLE:
 			update_hover()
-			update_hovered_card()
 
 		Mode.MOVE_PREVIEW:
 			update_move_preview()
 
 		Mode.PLAYING:
 			update_target_preview()
+
+
+# ------------------------
+# STATES
+# ------------------------
 
 func _enter_move_preview():
 	mode = Mode.MOVE_PREVIEW
@@ -84,23 +124,32 @@ func _enter_move_preview():
 	preview_range_tiles.clear()
 	highlight_info.clear()
 	highlight_target.clear()
-	highlight_target.modulate = Color(0, 1, 0, 0.7) # GREEN
+	highlight_target.modulate = Color(0, 1, 0, 0.7)
 
 	hand.hide()
+
 
 func _enter_idle():
 	mode = Mode.IDLE
 
+	selected_card = null
 	preview_range_tiles.clear()
 	highlight_info.clear()
 	highlight_target.clear()
 	highlight_target.modulate = Color(1, 1, 1, 0.7)
-	
+
 	hand.show()
 
+
 func _enter_playing():
-	hand.hide()
+	print("playing")
 	mode = Mode.PLAYING
+	hand.hide()
+
+
+# ------------------------
+# MOVE
+# ------------------------
 
 func _confirm_move():
 	if preview_path.is_empty():
@@ -110,6 +159,7 @@ func _confirm_move():
 	unit.request_move(target)
 
 	_enter_idle()
+
 
 func update_move_preview():
 	var mouse_tile = unit.board.world_to_tile(get_global_mouse_position())
@@ -125,33 +175,6 @@ func update_move_preview():
 	for tile in preview_path:
 		highlight_target.set_cell(tile, 0, Vector2.ZERO)
 
-func _handle_left_click():
-	# 1. Select card
-	var card = get_card_under_mouse()
-	if card:
-		selected_card = card
-		mode = Mode.PLAYING
-		preview_play(card)
-		return
-
-	# 2. Play card
-	if selected_card:
-		var target = get_target_unit_under_mouse()
-		if target:
-			unit.request_play_card(selected_card.data, target)
-			clear_selection()
-
-func update_cards_playable():
-	for card in hand.get_children():
-		if not card.visible:
-			continue
-
-		card.is_playable = unit.data.current_pa >= card.data.card_cost
-
-		if card.is_playable :
-			card.modulate = Color(1,1,1)
-		else:
-			card.modulate = Color(0.5,0.5,0.5)
 
 func update_hover():
 	var tile = unit.board.world_to_tile(get_global_mouse_position())
@@ -160,16 +183,9 @@ func update_hover():
 	highlight_target.modulate = Color(1, 1, 1, 0.7)
 	highlight_target.set_cell(tile, 0, Vector2.ZERO)
 
-func update_hovered_card():
-	var mouse_pos = get_viewport().get_mouse_position()
-	hovered_card = null
-
-	for card in hand.get_children():
-		if not card.visible or not card.is_playable:
-			continue
-
-		if card.get_global_rect().has_point(mouse_pos) and card.z_index > 0:
-			hovered_card = card
+# ------------------------
+# CARD PREVIEW
+# ------------------------
 
 func preview_play(card):
 	highlight_info.clear()
@@ -180,7 +196,6 @@ func preview_play(card):
 		return
 
 	preview_range_tiles.clear()
-
 	var origin = unit.current_tile
 
 	for x in range(-range, range + 1):
@@ -190,12 +205,6 @@ func preview_play(card):
 				preview_range_tiles.append(tile)
 				highlight_info.set_cell(tile, 0, Vector2.ZERO)
 
-func clear_selection():
-	selected_card = null
-	mode = Mode.IDLE
-
-	preview_range_tiles.clear()
-	highlight_info.clear()
 
 func update_target_preview():
 	var mouse_tile = unit.board.world_to_tile(get_global_mouse_position())
@@ -213,18 +222,26 @@ func update_target_preview():
 	if not target:
 		return
 
-	var is_buff = is_buff_card(selected_card)
-
 	var valid := false
 
-	if is_buff:
-		valid = target.is_player == unit.is_player
-	else:
-		valid = target.is_player != unit.is_player
+	valid = target.is_player != unit.is_player
 
 	if valid:
 		highlight_target.modulate = Color(1, 0, 0, 0.7)
 		highlight_target.set_cell(mouse_tile, 0, Vector2.ZERO)
+
+
+# ------------------------
+# UTILS
+# ------------------------
+
+func update_cards_playable():
+	for card in hand.get_children():
+		if not card.visible:
+			continue
+
+		card.update_playable_state(unit.data.current_pa)
+
 
 func get_target_unit_under_mouse():
 	var tile = unit.board.world_to_tile(get_global_mouse_position())
@@ -240,28 +257,11 @@ func get_target_unit_under_mouse():
 	if not target:
 		return null
 
-	var is_buff = is_buff_card(selected_card)
-
-	if is_buff:
-		if target.is_player != unit.is_player:
-			return null
-	else:
-		if target.is_player == unit.is_player:
-			return null
+	if target.is_player == unit.is_player:
+		return null
 
 	return target
 
-func get_card_under_mouse() -> Control:
-	var mouse_pos = get_viewport().get_mouse_position()
-
-	for card in hand.get_children():
-		if not card.visible or not card.is_playable:
-			continue
-
-		if card.get_global_rect().has_point(mouse_pos) and card.z_index > 0:
-			return card
-
-	return null
 
 func get_unit_name_at_tile(tile: Vector2i) -> String:
 	for name in unit.board.units_position:
@@ -269,14 +269,9 @@ func get_unit_name_at_tile(tile: Vector2i) -> String:
 			return name
 	return ""
 
-func is_buff_card(card) -> bool:
-	for tag_el in card.data.tags:
-		if tag_el.tag == Tag.tag_name.BUFF:
-			return true
-	return false
 
 func _get_card_range(card) -> int:
-	for tag_el in card.data.tags:
-		if tag_el.tag == Tag.tag_name.RANGE:
-			return tag_el.value
+	for behavior in card.data.behaviors:
+		if behavior is RangeBehavior:
+			return behavior.value.calc(unit.data)
 	return 0

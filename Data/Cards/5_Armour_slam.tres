@@ -1,0 +1,40 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=13 format=3 uid="uid://cguuoeukr088o"]
+
+[ext_resource type="Script" uid="uid://btca07v42fca6" path="res://Data/Struct/Behavior/behaviourStruct.gd" id="1_iejm8"]
+[ext_resource type="Script" uid="uid://cene6ue7py8d6" path="res://Data/Struct/Behavior/armourBehaviorStruct.gd" id="2_ekyid"]
+[ext_resource type="Script" uid="uid://d1lmin6ttmpai" path="res://Data/Struct/Behavior/behaviorValueStruct.gd" id="3_l2is0"]
+[ext_resource type="Script" uid="uid://cbq82s17dwdck" path="res://Data/Struct/Behavior/damageBehaviorStruct.gd" id="4_rwgsh"]
+[ext_resource type="Script" uid="uid://cbmqnge7w6e" path="res://Data/Struct/Behavior/rangeBehaviorStruct.gd" id="5_vn5jf"]
+[ext_resource type="Script" uid="uid://w2q1k8pof41t" path="res://Data/Struct/cardStruct.gd" id="6_xe4g8"]
+
+[sub_resource type="Resource" id="Resource_li62p"]
+script = ExtResource("3_l2is0")
+amount = "-armour"
+
+[sub_resource type="Resource" id="Resource_kl57h"]
+script = ExtResource("2_ekyid")
+value = SubResource("Resource_li62p")
+
+[sub_resource type="Resource" id="Resource_rewqg"]
+script = ExtResource("3_l2is0")
+amount = "armour"
+
+[sub_resource type="Resource" id="Resource_dpq8u"]
+script = ExtResource("4_rwgsh")
+value = SubResource("Resource_rewqg")
+
+[sub_resource type="Resource" id="Resource_i4eru"]
+script = ExtResource("3_l2is0")
+amount = "2"
+
+[sub_resource type="Resource" id="Resource_347r6"]
+script = ExtResource("5_vn5jf")
+value = SubResource("Resource_i4eru")
+
+[resource]
+script = ExtResource("6_xe4g8")
+id = 5
+card_name = "Armour slam"
+card_cost = 1
+description = "Slam an enemy sacrifing your armour to inflict damage on your armour up to {range} cells away."
+behaviors = Array[ExtResource("1_iejm8")]([SubResource("Resource_kl57h"), SubResource("Resource_dpq8u"), SubResource("Resource_347r6")])

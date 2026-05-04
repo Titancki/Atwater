@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=10 format=3 uid="uid://baiknbqqom1jm"]
+
+[ext_resource type="Script" uid="uid://btca07v42fca6" path="res://Data/Struct/Behavior/behaviourStruct.gd" id="1_02p17"]
+[ext_resource type="Script" uid="uid://cbq82s17dwdck" path="res://Data/Struct/Behavior/damageBehaviorStruct.gd" id="2_rx06e"]
+[ext_resource type="Script" uid="uid://d1lmin6ttmpai" path="res://Data/Struct/Behavior/behaviorValueStruct.gd" id="3_g7ndn"]
+[ext_resource type="Script" uid="uid://cbmqnge7w6e" path="res://Data/Struct/Behavior/rangeBehaviorStruct.gd" id="4_r412h"]
+[ext_resource type="Script" uid="uid://w2q1k8pof41t" path="res://Data/Struct/cardStruct.gd" id="5_0ljjy"]
+
+[sub_resource type="Resource" id="Resource_e0bej"]
+script = ExtResource("3_g7ndn")
+amount = "5"
+
+[sub_resource type="Resource" id="Resource_occ4d"]
+script = ExtResource("2_rx06e")
+value = SubResource("Resource_e0bej")
+
+[sub_resource type="Resource" id="Resource_33ccx"]
+script = ExtResource("3_g7ndn")
+amount = "7"
+
+[sub_resource type="Resource" id="Resource_iejxt"]
+script = ExtResource("4_r412h")
+value = SubResource("Resource_33ccx")
+
+[resource]
+script = ExtResource("5_0ljjy")
+id = 1
+card_name = "Quick shot"
+card_cost = 1
+description = "Shoot with your pistol, dealing {damage} damage based on life to target up to {range} cells away."
+behaviors = Array[ExtResource("1_02p17")]([SubResource("Resource_occ4d"), SubResource("Resource_iejxt")])

@@ -1,0 +1,51 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=16 format=3 uid="uid://bxcle6kkras3q"]
+
+[ext_resource type="Script" uid="uid://btca07v42fca6" path="res://Data/Struct/Behavior/behaviourStruct.gd" id="1_k7ynl"]
+[ext_resource type="Script" uid="uid://b0ogtoop4goqk" path="res://Data/Struct/Behavior/aoeBehaviorStruct.gd" id="2_jtxgf"]
+[ext_resource type="Script" uid="uid://d1lmin6ttmpai" path="res://Data/Struct/Behavior/behaviorValueStruct.gd" id="3_hebvm"]
+[ext_resource type="Script" uid="uid://cbq82s17dwdck" path="res://Data/Struct/Behavior/damageBehaviorStruct.gd" id="4_7ngjf"]
+[ext_resource type="Script" uid="uid://806bdegxssif" path="res://Data/Struct/Behavior/echoBehaviorStruct.gd" id="5_bvb0p"]
+[ext_resource type="Script" uid="uid://cbmqnge7w6e" path="res://Data/Struct/Behavior/rangeBehaviorStruct.gd" id="6_bis8g"]
+[ext_resource type="Script" uid="uid://w2q1k8pof41t" path="res://Data/Struct/cardStruct.gd" id="7_yu4jx"]
+
+[sub_resource type="Resource" id="Resource_k7ynl"]
+script = ExtResource("3_hebvm")
+amount = "5"
+
+[sub_resource type="Resource" id="Resource_jtxgf"]
+script = ExtResource("2_jtxgf")
+value = SubResource("Resource_k7ynl")
+
+[sub_resource type="Resource" id="Resource_hebvm"]
+script = ExtResource("3_hebvm")
+amount = "5"
+
+[sub_resource type="Resource" id="Resource_7ngjf"]
+script = ExtResource("4_7ngjf")
+value = SubResource("Resource_hebvm")
+
+[sub_resource type="Resource" id="Resource_bvb0p"]
+script = ExtResource("3_hebvm")
+amount = "discard_card_turn"
+
+[sub_resource type="Resource" id="Resource_bis8g"]
+script = ExtResource("5_bvb0p")
+value = SubResource("Resource_bvb0p")
+
+[sub_resource type="Resource" id="Resource_yu4jx"]
+script = ExtResource("3_hebvm")
+amount = "7"
+
+[sub_resource type="Resource" id="Resource_rdgod"]
+script = ExtResource("6_bis8g")
+value = SubResource("Resource_yu4jx")
+
+[resource]
+script = ExtResource("7_yu4jx")
+id = 12
+card_name = "Mortar"
+card_cost = 3
+description = "Discard hand.
+Launch a shell, up to {range} cells away, hitting all enemies in a {aoe} radius. 
+Launch an additional time for each card discarded this turn."
+behaviors = Array[ExtResource("1_k7ynl")]([SubResource("Resource_jtxgf"), SubResource("Resource_7ngjf"), SubResource("Resource_bis8g"), SubResource("Resource_rdgod")])

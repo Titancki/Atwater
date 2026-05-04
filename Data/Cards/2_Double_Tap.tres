@@ -1,0 +1,40 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=13 format=3 uid="uid://blobnxgu5vxtx"]
+
+[ext_resource type="Script" uid="uid://btca07v42fca6" path="res://Data/Struct/Behavior/behaviourStruct.gd" id="1_jyd2c"]
+[ext_resource type="Script" uid="uid://cbq82s17dwdck" path="res://Data/Struct/Behavior/damageBehaviorStruct.gd" id="2_rsyro"]
+[ext_resource type="Script" uid="uid://d1lmin6ttmpai" path="res://Data/Struct/Behavior/behaviorValueStruct.gd" id="3_4j2ka"]
+[ext_resource type="Script" uid="uid://806bdegxssif" path="res://Data/Struct/Behavior/echoBehaviorStruct.gd" id="4_isc45"]
+[ext_resource type="Script" uid="uid://cbmqnge7w6e" path="res://Data/Struct/Behavior/rangeBehaviorStruct.gd" id="5_idlx4"]
+[ext_resource type="Script" uid="uid://w2q1k8pof41t" path="res://Data/Struct/cardStruct.gd" id="6_63eei"]
+
+[sub_resource type="Resource" id="Resource_uxvkl"]
+script = ExtResource("3_4j2ka")
+amount = "3"
+
+[sub_resource type="Resource" id="Resource_vrhbx"]
+script = ExtResource("2_rsyro")
+value = SubResource("Resource_uxvkl")
+
+[sub_resource type="Resource" id="Resource_dra51"]
+script = ExtResource("3_4j2ka")
+amount = "1"
+
+[sub_resource type="Resource" id="Resource_jd348"]
+script = ExtResource("4_isc45")
+value = SubResource("Resource_dra51")
+
+[sub_resource type="Resource" id="Resource_xmfnm"]
+script = ExtResource("3_4j2ka")
+amount = "7"
+
+[sub_resource type="Resource" id="Resource_d3vqa"]
+script = ExtResource("5_idlx4")
+value = SubResource("Resource_xmfnm")
+
+[resource]
+script = ExtResource("6_63eei")
+id = 2
+card_name = "Double Tap"
+card_cost = 1
+description = "Deal {damage} damage to a target up to {range} tiles away. Triggers {echo} additionnal time."
+behaviors = Array[ExtResource("1_jyd2c")]([SubResource("Resource_vrhbx"), SubResource("Resource_jd348"), SubResource("Resource_d3vqa")])

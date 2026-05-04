@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=10 format=3 uid="uid://nm0a8renx00i"]
+
+[ext_resource type="Script" uid="uid://btca07v42fca6" path="res://Data/Struct/Behavior/behaviourStruct.gd" id="1_ee24b"]
+[ext_resource type="Script" uid="uid://cn8mb38m3agn3" path="res://Data/Struct/Behavior/drawBehaviorStruct.gd" id="2_jcevm"]
+[ext_resource type="Script" uid="uid://d1lmin6ttmpai" path="res://Data/Struct/Behavior/behaviorValueStruct.gd" id="3_b1v0h"]
+[ext_resource type="Script" uid="uid://bufdg4v4kxkwa" path="res://Data/Struct/Behavior/durationBehaviorStruct.gd" id="4_no85r"]
+[ext_resource type="Script" uid="uid://w2q1k8pof41t" path="res://Data/Struct/cardStruct.gd" id="5_v27qc"]
+
+[sub_resource type="Resource" id="Resource_87qpi"]
+script = ExtResource("3_b1v0h")
+amount = "1"
+
+[sub_resource type="Resource" id="Resource_n0gn2"]
+script = ExtResource("2_jcevm")
+value = SubResource("Resource_87qpi")
+
+[sub_resource type="Resource" id="Resource_ephet"]
+script = ExtResource("3_b1v0h")
+amount = "3"
+
+[sub_resource type="Resource" id="Resource_gi8qn"]
+script = ExtResource("4_no85r")
+value = SubResource("Resource_ephet")
+
+[resource]
+script = ExtResource("5_v27qc")
+id = 20
+card_name = "Berserk"
+card_cost = 2
+description = "Draw {draw} card each time an enemy is stunned."
+behaviors = Array[ExtResource("1_ee24b")]([SubResource("Resource_n0gn2"), SubResource("Resource_gi8qn")])

@@ -6,7 +6,7 @@ extends UnitData
 var draw : Array[CardData] = []
 var discard : Array[CardData] = []
 var hand : Array[CardData] = []
-var current_location : LocationData = LocationLoader.loc_1
+@export var current_location : LocationData = LocationLoader.loc_1
 signal hand_changed
 
 func initialize_deck() -> void:
@@ -57,6 +57,12 @@ func discard_card_from_draw(card : CardData) -> void :
 func discard_card_from_hand(card : CardData) -> void :
 	hand.erase(card)
 	discard.append(card)
+	hand_changed.emit()
+	save()
+	
+func discard_hand() -> void:
+	discard.append_array(hand)
+	hand = []
 	hand_changed.emit()
 	save()
 

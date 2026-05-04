@@ -1,0 +1,10 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://dp80nm2l6q4aj"]
+
+[ext_resource type="FontFile" uid="uid://bdu8pp8pja0tt" path="res://Addons/ApiImporter/Coda/Coda-Regular.ttf" id="1_cq4tr"]
+
+[resource]
+default_font = ExtResource("1_cq4tr")
+Button/font_sizes/font_size = 24
+Button/fonts/font = ExtResource("1_cq4tr")
+Label/font_sizes/font_size = 24
+Label/fonts/font = ExtResource("1_cq4tr")

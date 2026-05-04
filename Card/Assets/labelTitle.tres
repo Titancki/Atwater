@@ -1,0 +1,9 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://c241q2jxsm7sk"]
+
+[ext_resource type="FontFile" uid="uid://cdvr0ufabypr2" path="res://Card/Fonts/Coda/Coda-Regular.ttf" id="1_tqm68"]
+
+[resource]
+font = ExtResource("1_tqm68")
+font_size = 24
+font_color = Color(0.9372549, 0.88235295, 0.76862746, 1)
+shadow_color = Color(0, 0, 0, 0.3372549)

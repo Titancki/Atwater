@@ -1,4 +1,8 @@
-[gd_resource type="Theme" format=3 uid="uid://bkfxnya26oi5o"]
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://bkfxnya26oi5o"]
+
+[ext_resource type="FontFile" uid="uid://c4qkpqf007l2a" path="res://Card/Fonts/Cormorant_SC/CormorantSC-Regular.ttf" id="1_272b6"]
 
 [resource]
+Button/font_sizes/font_size = 32
+Button/fonts/font = ExtResource("1_272b6")
 PanelContainer/styles/panel = null

@@ -66,9 +66,9 @@ func _can_play_card(card) -> bool:
 func _is_in_range(card) -> bool:
 	var range := 0
 
-	for tag_el in card.tags:
-		if tag_el.tag == Tag.tag_name.RANGE:
-			range = tag_el.value
+	for behavior in card.behaviors:
+		if behavior is RangeBehavior and behavior.value :
+			range = behavior.value.calc(unit.data)
 			break
 
 	var dist = unit.current_tile.distance_to(player.current_tile)

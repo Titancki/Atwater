@@ -1,9 +1,10 @@
-[gd_scene load_steps=19 format=3 uid="uid://bcden520mgv3g"]
+[gd_scene load_steps=20 format=3 uid="uid://bcden520mgv3g"]
 
 [ext_resource type="Script" uid="uid://rbid3hkjw7rx" path="res://Battlemap/Unit/unit.gd" id="1_lugno"]
 [ext_resource type="Script" uid="uid://bma5l327rj2fm" path="res://Data/Struct/enemyStruct.gd" id="2_iualm"]
-[ext_resource type="Resource" uid="uid://j2yt8bu1rjwa" path="res://Data/Cards/shot.tres" id="3_ossun"]
+[ext_resource type="Resource" uid="uid://duhydhxxiknan" path="res://Data/Cards/15_Jab.tres" id="3_pbrdw"]
 [ext_resource type="PackedScene" uid="uid://dgkk6qimr08u1" path="res://Battlemap/Unit/animator/unit_animator.tscn" id="4_ops4s"]
+[ext_resource type="Resource" uid="uid://cd0fyxuiq4aov" path="res://Data/Cards/17_Uppercut.tres" id="4_swnvy"]
 [ext_resource type="Script" uid="uid://ch5jc0cvku7lv" path="res://Battlemap/Unit/Enemy/ai.gd" id="5_q0hhl"]
 [ext_resource type="Script" uid="uid://co8qwt8kw5obj" path="res://Battlemap/Unit/state_machine.gd" id="6_t21eo"]
 [ext_resource type="Script" uid="uid://cw1hi2ubfwfi7" path="res://Battlemap/Unit/States/idle_state.gd" id="7_qdt53"]
@@ -14,8 +15,9 @@
 
 [sub_resource type="Resource" id="Resource_ma4ni"]
 script = ExtResource("2_iualm")
-turn_hands = Array[Array]([[ExtResource("3_ossun")]])
+turn_hands = Array[Array]([[ExtResource("3_pbrdw"), ExtResource("3_pbrdw")], [ExtResource("4_swnvy")]])
 max_pm = 1
+initiative = 0
 metadata/_custom_type_script = "uid://bma5l327rj2fm"
 
 [sub_resource type="Environment" id="Environment_o6bvm"]
@@ -43,7 +45,7 @@ border_blend = true
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lveat"]
 bg_color = Color(0.40544224, 0.095053755, 0.12025488, 1)
 
-[node name="Enemy" type="CharacterBody2D"]
+[node name="Enemy" type="CharacterBody2D" groups=["enemies"]]
 script = ExtResource("1_lugno")
 data = SubResource("Resource_ma4ni")
 

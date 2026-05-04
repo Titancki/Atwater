@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=10 format=3 uid="uid://du50gcrws4hh3"]
+
+[ext_resource type="Script" uid="uid://btca07v42fca6" path="res://Data/Struct/Behavior/behaviourStruct.gd" id="1_ywafh"]
+[ext_resource type="Script" uid="uid://cbmqnge7w6e" path="res://Data/Struct/Behavior/rangeBehaviorStruct.gd" id="2_st7ir"]
+[ext_resource type="Script" uid="uid://d1lmin6ttmpai" path="res://Data/Struct/Behavior/behaviorValueStruct.gd" id="3_dkk0a"]
+[ext_resource type="Script" uid="uid://doy3y1ipwii0l" path="res://Data/Struct/Behavior/stunBehaviorStruct.gd" id="4_7sfjo"]
+[ext_resource type="Script" uid="uid://w2q1k8pof41t" path="res://Data/Struct/cardStruct.gd" id="5_3ap01"]
+
+[sub_resource type="Resource" id="Resource_ywafh"]
+script = ExtResource("3_dkk0a")
+amount = "4"
+
+[sub_resource type="Resource" id="Resource_st7ir"]
+script = ExtResource("2_st7ir")
+value = SubResource("Resource_ywafh")
+
+[sub_resource type="Resource" id="Resource_dkk0a"]
+script = ExtResource("3_dkk0a")
+amount = "50"
+multiplier = "0.01"
+
+[sub_resource type="Resource" id="Resource_7sfjo"]
+script = ExtResource("4_7sfjo")
+value = SubResource("Resource_dkk0a")
+
+[resource]
+script = ExtResource("5_3ap01")
+id = 19
+card_name = "Charge"
+card_cost = 2
+description = "Charge a target, bringing you to contact. 
+{stun}% chance to stun target."
+behaviors = Array[ExtResource("1_ywafh")]([SubResource("Resource_st7ir"), SubResource("Resource_7sfjo")])

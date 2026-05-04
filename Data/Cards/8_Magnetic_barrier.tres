@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=10 format=3 uid="uid://c65tbdtvfdffe"]
+
+[ext_resource type="Script" uid="uid://btca07v42fca6" path="res://Data/Struct/Behavior/behaviourStruct.gd" id="1_ftpbn"]
+[ext_resource type="Script" uid="uid://b0ogtoop4goqk" path="res://Data/Struct/Behavior/aoeBehaviorStruct.gd" id="2_6415q"]
+[ext_resource type="Script" uid="uid://d1lmin6ttmpai" path="res://Data/Struct/Behavior/behaviorValueStruct.gd" id="3_woxd3"]
+[ext_resource type="Script" uid="uid://vb6ni135nlmr" path="res://Data/Struct/Behavior/attractBehaviorStruct.gd" id="4_bg6yi"]
+[ext_resource type="Script" uid="uid://w2q1k8pof41t" path="res://Data/Struct/cardStruct.gd" id="5_pypvj"]
+
+[sub_resource type="Resource" id="Resource_ftpbn"]
+script = ExtResource("3_woxd3")
+amount = "3"
+
+[sub_resource type="Resource" id="Resource_6415q"]
+script = ExtResource("2_6415q")
+value = SubResource("Resource_ftpbn")
+
+[sub_resource type="Resource" id="Resource_woxd3"]
+script = ExtResource("3_woxd3")
+amount = "2"
+
+[sub_resource type="Resource" id="Resource_bg6yi"]
+script = ExtResource("4_bg6yi")
+value = SubResource("Resource_woxd3")
+
+[resource]
+script = ExtResource("5_pypvj")
+id = 8
+card_name = "Magnetic barrier"
+card_cost = 1
+description = "In a {aoe} tile radius, attract enemies making them come {attract} tiles closer to you."
+behaviors = Array[ExtResource("1_ftpbn")]([SubResource("Resource_6415q"), SubResource("Resource_bg6yi")])

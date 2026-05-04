@@ -1,0 +1,41 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=13 format=3 uid="uid://0ji0pwf30s1p"]
+
+[ext_resource type="Script" uid="uid://btca07v42fca6" path="res://Data/Struct/Behavior/behaviourStruct.gd" id="1_r645i"]
+[ext_resource type="Script" uid="uid://cbq82s17dwdck" path="res://Data/Struct/Behavior/damageBehaviorStruct.gd" id="2_huoq1"]
+[ext_resource type="Script" uid="uid://d1lmin6ttmpai" path="res://Data/Struct/Behavior/behaviorValueStruct.gd" id="3_evv1s"]
+[ext_resource type="Script" uid="uid://cbmqnge7w6e" path="res://Data/Struct/Behavior/rangeBehaviorStruct.gd" id="4_jriqf"]
+[ext_resource type="Script" uid="uid://doy3y1ipwii0l" path="res://Data/Struct/Behavior/stunBehaviorStruct.gd" id="5_khul3"]
+[ext_resource type="Script" uid="uid://w2q1k8pof41t" path="res://Data/Struct/cardStruct.gd" id="6_0pfmr"]
+
+[sub_resource type="Resource" id="Resource_qnmmf"]
+script = ExtResource("3_evv1s")
+amount = "5"
+
+[sub_resource type="Resource" id="Resource_ki5bi"]
+script = ExtResource("2_huoq1")
+value = SubResource("Resource_qnmmf")
+
+[sub_resource type="Resource" id="Resource_qck2e"]
+script = ExtResource("3_evv1s")
+amount = "1"
+
+[sub_resource type="Resource" id="Resource_3f4l7"]
+script = ExtResource("4_jriqf")
+value = SubResource("Resource_qck2e")
+
+[sub_resource type="Resource" id="Resource_wdybl"]
+script = ExtResource("3_evv1s")
+amount = "10"
+multiplier = "0.01"
+
+[sub_resource type="Resource" id="Resource_2i6tr"]
+script = ExtResource("5_khul3")
+value = SubResource("Resource_wdybl")
+
+[resource]
+script = ExtResource("6_0pfmr")
+id = 14
+card_name = "Punch"
+card_cost = 1
+description = "Punch a target, dealing {damage} damage.  Target is stunned, having {stun}% chance to pass his turn."
+behaviors = Array[ExtResource("1_r645i")]([SubResource("Resource_ki5bi"), SubResource("Resource_3f4l7"), SubResource("Resource_2i6tr")])

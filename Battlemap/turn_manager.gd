@@ -11,7 +11,7 @@ func _ready() -> void:
 	for child in get_children():
 			if child is Unit:
 				units.append(child)
-				
+				child.died.connect(_on_unit_death.bind(child))
 	turn_order = units.duplicate()
 	turn_order.sort_custom(func(a, b):
 		return a.data.initiative > b.data.initiative
@@ -40,16 +40,22 @@ func next_turn() -> void:
 	
 func _on_shift_finished() -> void:
 	interface.move_child(interface.get_child(0), interface.get_child_count() - 1)
-	
 	for child in interface.get_children():
 		child.position = Vector2.ZERO
 	
 	var unit : Unit = turn_order.pop_front()
 	turn_order.push_back(unit)
 	turn_order[0].start_turn()
-	
-
 
 func _on_button_pressed() -> void:
 	# Debug only
 	get_node("/root/Game/LevelManager").change_scene("world_map")
+	
+func _on_unit_death(unit):
+	turn_order.erase(unit)
+	if unit.is_player : 
+		get_node("/root/Game/LevelManager").change_scene("defeat")
+	else:
+		$Interface/Initiative/HBoxContainer.get_node("%s_mini" % unit.name).queue_free()
+		var has_enemies = turn_order.any(func(e): return e.is_in_group("enemies"))
+		if not has_enemies : get_node("/root/Game/LevelManager").change_scene("victory")

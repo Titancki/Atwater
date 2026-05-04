@@ -1,0 +1,40 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=13 format=3 uid="uid://cf8o5a7ui2ddh"]
+
+[ext_resource type="Script" uid="uid://btca07v42fca6" path="res://Data/Struct/Behavior/behaviourStruct.gd" id="1_th4td"]
+[ext_resource type="Script" uid="uid://b0ogtoop4goqk" path="res://Data/Struct/Behavior/aoeBehaviorStruct.gd" id="2_sk43h"]
+[ext_resource type="Script" uid="uid://d1lmin6ttmpai" path="res://Data/Struct/Behavior/behaviorValueStruct.gd" id="3_hptlg"]
+[ext_resource type="Script" uid="uid://cbq82s17dwdck" path="res://Data/Struct/Behavior/damageBehaviorStruct.gd" id="4_grpqm"]
+[ext_resource type="Script" uid="uid://bufdg4v4kxkwa" path="res://Data/Struct/Behavior/durationBehaviorStruct.gd" id="5_yy4rg"]
+[ext_resource type="Script" uid="uid://w2q1k8pof41t" path="res://Data/Struct/cardStruct.gd" id="6_bfque"]
+
+[sub_resource type="Resource" id="Resource_th4td"]
+script = ExtResource("3_hptlg")
+amount = "1"
+
+[sub_resource type="Resource" id="Resource_sk43h"]
+script = ExtResource("2_sk43h")
+value = SubResource("Resource_th4td")
+
+[sub_resource type="Resource" id="Resource_hptlg"]
+script = ExtResource("3_hptlg")
+amount = "4"
+
+[sub_resource type="Resource" id="Resource_grpqm"]
+script = ExtResource("4_grpqm")
+value = SubResource("Resource_hptlg")
+
+[sub_resource type="Resource" id="Resource_yy4rg"]
+script = ExtResource("3_hptlg")
+amount = "3"
+
+[sub_resource type="Resource" id="Resource_bfque"]
+script = ExtResource("5_yy4rg")
+value = SubResource("Resource_yy4rg")
+
+[resource]
+script = ExtResource("6_bfque")
+id = 7
+card_name = "Spiked Shell"
+card_cost = 2
+description = "Gain Spike effect dealing {damage} damage in a {aoe} tile radius around you when  you lose armour. Last {duration} turns"
+behaviors = Array[ExtResource("1_th4td")]([SubResource("Resource_sk43h"), SubResource("Resource_grpqm"), SubResource("Resource_bfque")])
