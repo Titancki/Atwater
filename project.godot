@@ -20,6 +20,10 @@ config/icon="res://icon.svg"
 LocationLoader="*res://Globals/LocationLoader.gd"
 SceneLoader="*res://Globals/SceneLoader.gd"
 
+[debug]
+
+gdscript/warnings/unused_parameter=0
+
 [display]
 
 window/size/viewport_width=1920

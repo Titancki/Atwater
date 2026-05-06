@@ -3,7 +3,7 @@
 [ext_resource type="Theme" uid="uid://dp80nm2l6q4aj" path="res://Addons/ApiImporter/theme.tres" id="1_cpudb"]
 [ext_resource type="Script" uid="uid://bbo5jsa06n30f" path="res://Addons/ApiImporter/card_importer.gd" id="2_cckoh"]
 [ext_resource type="Script" uid="uid://xxtawmq2ppgq" path="res://Card/card.gd" id="3_tdt5x"]
-[ext_resource type="Resource" uid="uid://j2yt8bu1rjwa" path="res://Data/Cards/shot.tres" id="4_owifi"]
+[ext_resource type="Resource" uid="uid://baiknbqqom1jm" path="res://Data/Cards/1_Quick_shot.tres" id="4_tdt5x"]
 [ext_resource type="Texture2D" uid="uid://ut7grda0mu31" path="res://Card/Assets/CardV2_bg.png" id="5_lhlb8"]
 [ext_resource type="FontFile" uid="uid://cdvr0ufabypr2" path="res://Card/Fonts/Coda/Coda-Regular.ttf" id="6_77lq6"]
 [ext_resource type="Texture2D" uid="uid://73s2sc8pb6co" path="res://Card/Assets/overlay_magiccog.png" id="7_2wmuk"]
@@ -255,7 +255,7 @@ anchors_preset = 0
 offset_right = 200.0
 offset_bottom = 320.0
 script = ExtResource("3_tdt5x")
-data = ExtResource("4_owifi")
+data = ExtResource("4_tdt5x")
 enabled_zoom = false
 
 [node name="Visual" type="Control" parent="BG/VBoxMain/PanelContainer/HBoxContainer/Control/CardPreview"]

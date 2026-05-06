@@ -64,15 +64,15 @@ func _can_play_card(card) -> bool:
 	return true
 
 func _is_in_range(card) -> bool:
-	var range := 0
+	var srange := 0
 
 	for behavior in card.behaviors:
 		if behavior is RangeBehavior and behavior.value :
-			range = behavior.value.calc(unit.data)
+			srange = behavior.value.calc(unit.data)
 			break
 
 	var dist = unit.current_tile.distance_to(player.current_tile)
-	return dist <= range
+	return dist <= srange
 
 func _get_card_target(card):
 	# For now: always target player

@@ -17,9 +17,9 @@ func update_facing(dir: Vector2):
 	var angle = dir.angle()
 
 	# Snap to 90° (PI/2)
-	var snapped = round(angle / ((-PI)/2)) * (PI/2)
+	var limit = round(angle / ((-PI)/2)) * (PI/2)
 
-	$UAL1_Standard.rotation.y = snapped + PI/2
+	$UAL1_Standard.rotation.y = limit + PI/2
 
 func look_at_tile(from_tile: Vector2i, target_tile: Vector2i):
 	print(from_tile, target_tile)

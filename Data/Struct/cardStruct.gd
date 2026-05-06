@@ -10,7 +10,22 @@ extends Resource
 
 signal played
 
-func play(source: UnitData, target : UnitData):
+func play(source: UnitData, target: UnitData):
 	for behavior in behaviors:
 		behavior.execute(source, target)
+
 	played.emit()
+
+func get_echo_count(source: UnitData) -> int:
+	var repeat : int = 1
+	for behavior in behaviors:
+		if behavior is EchoBehavior:
+			repeat += behavior.value.calc(source)
+	return repeat
+
+func get_aoe_radius(source: UnitData) -> int:
+	var radius : int = 0
+	for behavior in behaviors:
+		if behavior is AoeBehavior:
+			radius = behavior.value.calc(source)
+	return radius

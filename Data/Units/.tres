@@ -9,5 +9,5 @@ script = ExtResource("1_b7fby")
 turn_hands = Array[Array]([[ExtResource("2_0vx4c"), ExtResource("2_0vx4c")], [ExtResource("3_usft8")]])
 max_pm = 2
 current_pa = 3
-current_life = 91
+current_life = 95
 metadata/_custom_type_script = "uid://bma5l327rj2fm"

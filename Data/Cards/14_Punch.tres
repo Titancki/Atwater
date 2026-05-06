@@ -7,30 +7,30 @@
 [ext_resource type="Script" uid="uid://doy3y1ipwii0l" path="res://Data/Struct/Behavior/stunBehaviorStruct.gd" id="5_khul3"]
 [ext_resource type="Script" uid="uid://w2q1k8pof41t" path="res://Data/Struct/cardStruct.gd" id="6_0pfmr"]
 
-[sub_resource type="Resource" id="Resource_qnmmf"]
+[sub_resource type="Resource" id="Resource_r645i"]
 script = ExtResource("3_evv1s")
 amount = "5"
 
-[sub_resource type="Resource" id="Resource_ki5bi"]
+[sub_resource type="Resource" id="Resource_huoq1"]
 script = ExtResource("2_huoq1")
-value = SubResource("Resource_qnmmf")
+value = SubResource("Resource_r645i")
 
-[sub_resource type="Resource" id="Resource_qck2e"]
+[sub_resource type="Resource" id="Resource_evv1s"]
 script = ExtResource("3_evv1s")
 amount = "1"
 
-[sub_resource type="Resource" id="Resource_3f4l7"]
+[sub_resource type="Resource" id="Resource_jriqf"]
 script = ExtResource("4_jriqf")
-value = SubResource("Resource_qck2e")
+value = SubResource("Resource_evv1s")
 
-[sub_resource type="Resource" id="Resource_wdybl"]
+[sub_resource type="Resource" id="Resource_khul3"]
 script = ExtResource("3_evv1s")
 amount = "10"
 multiplier = "0.01"
 
-[sub_resource type="Resource" id="Resource_2i6tr"]
+[sub_resource type="Resource" id="Resource_0pfmr"]
 script = ExtResource("5_khul3")
-value = SubResource("Resource_wdybl")
+value = SubResource("Resource_khul3")
 
 [resource]
 script = ExtResource("6_0pfmr")
@@ -38,4 +38,4 @@ id = 14
 card_name = "Punch"
 card_cost = 1
 description = "Punch a target, dealing {damage} damage.  Target is stunned, having {stun}% chance to pass his turn."
-behaviors = Array[ExtResource("1_r645i")]([SubResource("Resource_ki5bi"), SubResource("Resource_3f4l7"), SubResource("Resource_2i6tr")])
+behaviors = Array[ExtResource("1_r645i")]([SubResource("Resource_huoq1"), SubResource("Resource_jriqf"), SubResource("Resource_0pfmr")])

@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://dyxfh2kd6kbaa" path="res://Battlemap/Assets/Isometric Tileset/testBlock.tscn" id="8_5ybqi"]
 [ext_resource type="Resource" uid="uid://duhydhxxiknan" path="res://Data/Cards/15_Jab.tres" id="9_d1d88"]
 [ext_resource type="Resource" uid="uid://cd0fyxuiq4aov" path="res://Data/Cards/17_Uppercut.tres" id="10_e7d07"]
-[ext_resource type="Resource" uid="uid://df7rs1o141gn5" path="res://Data/Units/player.tres" id="16_rqmtm"]
+[ext_resource type="Resource" path="res://Data/Units/player.tres" id="16_rqmtm"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_dwbyy"]
 resource_name = "Ground"

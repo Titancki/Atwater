@@ -110,10 +110,10 @@ func _on_damaged(value: int):
 		damage_label.position = Vector2.ZERO
 	)
 
-func _on_life_changed(current: int, max: int):
+func _on_life_changed(current: int, maxhp: int):
 	if current <= 0 : _die()
 	if is_player : return
-	$LifeBar.max_value = max
+	$LifeBar.max_value = maxhp
 	$LifeBar.value = current
 		
 func _die():

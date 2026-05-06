@@ -4,11 +4,11 @@ class_name StateMachine
 var current_state: UnitState = null
 
 
-func change_state(name: String, data = {}):
+func change_state(nstate: String, data = {}):
 	if current_state:
 		current_state.exit()
 
-	current_state = get_node(name)
+	current_state = get_node(nstate)
 
 	if current_state:
 		current_state.enter(data)

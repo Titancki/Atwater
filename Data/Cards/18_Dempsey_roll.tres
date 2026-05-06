@@ -7,29 +7,29 @@
 [ext_resource type="Script" uid="uid://cbmqnge7w6e" path="res://Data/Struct/Behavior/rangeBehaviorStruct.gd" id="5_n8gm1"]
 [ext_resource type="Script" uid="uid://w2q1k8pof41t" path="res://Data/Struct/cardStruct.gd" id="6_orhnv"]
 
-[sub_resource type="Resource" id="Resource_72tgj"]
+[sub_resource type="Resource" id="Resource_gtixx"]
 script = ExtResource("3_78wn1")
 amount = "5"
 
-[sub_resource type="Resource" id="Resource_b4ith"]
+[sub_resource type="Resource" id="Resource_r263v"]
 script = ExtResource("2_r263v")
-value = SubResource("Resource_72tgj")
+value = SubResource("Resource_gtixx")
 
-[sub_resource type="Resource" id="Resource_8gjym"]
+[sub_resource type="Resource" id="Resource_78wn1"]
 script = ExtResource("3_78wn1")
 amount = "played_card_turn"
 
-[sub_resource type="Resource" id="Resource_hedas"]
+[sub_resource type="Resource" id="Resource_0083m"]
 script = ExtResource("4_0083m")
-value = SubResource("Resource_8gjym")
+value = SubResource("Resource_78wn1")
 
-[sub_resource type="Resource" id="Resource_yqi70"]
+[sub_resource type="Resource" id="Resource_n8gm1"]
 script = ExtResource("3_78wn1")
 amount = "1"
 
-[sub_resource type="Resource" id="Resource_2oo6c"]
+[sub_resource type="Resource" id="Resource_orhnv"]
 script = ExtResource("5_n8gm1")
-value = SubResource("Resource_yqi70")
+value = SubResource("Resource_n8gm1")
 
 [resource]
 script = ExtResource("6_orhnv")
@@ -38,4 +38,4 @@ card_name = "Dempsey roll"
 card_cost = 2
 description = "Hit a target, dealing {damage} damage.
 Reapeat 1 additional time for each card played this turn."
-behaviors = Array[ExtResource("1_gtixx")]([SubResource("Resource_b4ith"), SubResource("Resource_hedas"), SubResource("Resource_2oo6c")])
+behaviors = Array[ExtResource("1_gtixx")]([SubResource("Resource_r263v"), SubResource("Resource_0083m"), SubResource("Resource_orhnv")])
