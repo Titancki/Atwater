@@ -19,14 +19,11 @@ func _process(delta: float) -> void:
 	evaluate_best_action()
 
 func evaluate_best_action():
-	print("AI evaluating...")
-
 	# 1. Try play card
 	var card = _get_playable_card()
 	if card:
 		var target = _get_card_target(card)
 		if target:
-			print("AI → PlayCard")
 			unit.request_play_card(card, target)
 			return
 
@@ -34,12 +31,10 @@ func evaluate_best_action():
 	if _can_move():
 		var tile = _get_move_target()
 		if tile != unit.current_tile:
-			print("AI → Move")
 			unit.request_move(tile)
 			return
 
 	# 3. End turn
-	print("AI → EndTurn")
 	unit.end_turn()
 
 func _get_hand() -> Array:
@@ -66,6 +61,9 @@ func _can_play_card(card) -> bool:
 func _is_in_range(card) -> bool:
 	var srange := 0
 
+	if card.target_self:
+		return true
+	
 	for behavior in card.behaviors:
 		if behavior is RangeBehavior and behavior.value :
 			srange = behavior.value.calc(unit.data)
@@ -75,7 +73,7 @@ func _is_in_range(card) -> bool:
 	return dist <= srange
 
 func _get_card_target(card):
-	# For now: always target player
+	if card.target_self: return unit
 	if _is_in_range(card):
 		return player
 

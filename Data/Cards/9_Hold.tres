@@ -29,3 +29,4 @@ id = 9
 card_name = "Hold"
 description = "Loose {move} PM. Draw {draw} a card"
 behaviors = Array[ExtResource("1_w8gmm")]([SubResource("Resource_bdhfd"), SubResource("Resource_3fvmr")])
+target_self = true

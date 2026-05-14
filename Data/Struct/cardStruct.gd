@@ -8,6 +8,8 @@ extends Resource
 @export var artwork : Texture
 @export var behaviors : Array[Behavior]
 
+@export var target_self : bool = false
+
 signal played
 
 func play(source: UnitData, target: UnitData):

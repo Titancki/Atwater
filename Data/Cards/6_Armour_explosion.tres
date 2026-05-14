@@ -7,30 +7,30 @@
 [ext_resource type="Script" uid="uid://cbq82s17dwdck" path="res://Data/Struct/Behavior/damageBehaviorStruct.gd" id="5_4os8b"]
 [ext_resource type="Script" uid="uid://w2q1k8pof41t" path="res://Data/Struct/cardStruct.gd" id="6_o6si7"]
 
-[sub_resource type="Resource" id="Resource_sn2rx"]
+[sub_resource type="Resource" id="Resource_ioqje"]
 script = ExtResource("3_2ikuj")
 amount = "3"
 
-[sub_resource type="Resource" id="Resource_iiyym"]
+[sub_resource type="Resource" id="Resource_c0ft2"]
 script = ExtResource("2_c0ft2")
-value = SubResource("Resource_sn2rx")
+value = SubResource("Resource_ioqje")
 
-[sub_resource type="Resource" id="Resource_yb62s"]
+[sub_resource type="Resource" id="Resource_2ikuj"]
 script = ExtResource("3_2ikuj")
 amount = "armour"
 multiplier = "-0.5"
 
-[sub_resource type="Resource" id="Resource_e8v8r"]
+[sub_resource type="Resource" id="Resource_q23xb"]
 script = ExtResource("4_q23xb")
-value = SubResource("Resource_yb62s")
+value = SubResource("Resource_2ikuj")
 
-[sub_resource type="Resource" id="Resource_ptnyv"]
+[sub_resource type="Resource" id="Resource_4os8b"]
 script = ExtResource("3_2ikuj")
 amount = "armour"
 
-[sub_resource type="Resource" id="Resource_tq123"]
+[sub_resource type="Resource" id="Resource_o6si7"]
 script = ExtResource("5_4os8b")
-value = SubResource("Resource_ptnyv")
+value = SubResource("Resource_4os8b")
 
 [resource]
 script = ExtResource("6_o6si7")
@@ -38,4 +38,5 @@ id = 6
 card_name = "Armour explosion"
 card_cost = 3
 description = "Sacrify half of your armour. Make it explode in a {aoe} cell radius around you."
-behaviors = Array[ExtResource("1_ioqje")]([SubResource("Resource_iiyym"), SubResource("Resource_e8v8r"), SubResource("Resource_tq123")])
+behaviors = Array[ExtResource("1_ioqje")]([SubResource("Resource_c0ft2"), SubResource("Resource_q23xb"), SubResource("Resource_o6si7")])
+target_self = true

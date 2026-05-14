@@ -27,17 +27,11 @@ func _connect_cards():
 		if not card.pressed.is_connected(_on_card_pressed):
 			card.pressed.connect(_on_card_pressed)
 
-
-# ==================================================
-# INPUT
-# ==================================================
-
 func _input(event):
 	if not unit.is_my_turn:
 		return
 
 	if event is InputEventMouseButton:
-
 		match mode:
 
 			Mode.IDLE:
@@ -61,12 +55,7 @@ func _input(event):
 					_enter_idle()
 
 
-# ==================================================
-# PROCESS
-# ==================================================
-
 func _process(_delta):
-
 	if not unit.is_my_turn:
 		_enter_idle()
 		return
@@ -82,65 +71,36 @@ func _process(_delta):
 			update_move_preview()
 
 		Mode.PLAYING:
-			update_target_preview()
-
-
-# ==================================================
-# STATES
-# ==================================================
+			update_target_preview(selected_card.data.target_self)
 
 func _enter_idle():
-
 	mode = Mode.IDLE
-
 	selected_card = null
-
 	preview_range_tiles.clear()
 	preview_path.clear()
-
 	highlight_info.clear()
 	highlight_target.clear()
-
 	highlight_target.modulate = Color.WHITE
-
 	_reset_units_modulate()
-
 	hand.show()
 
 
 func _enter_move_preview():
-
 	mode = Mode.MOVE_PREVIEW
-
 	selected_card = null
-
 	preview_range_tiles.clear()
-
 	highlight_info.clear()
 	highlight_target.clear()
-
 	highlight_target.modulate = Color(0, 1, 0, 0.7)
-
 	_reset_units_modulate()
-
 	hand.hide()
-
 
 func _enter_playing():
-
 	mode = Mode.PLAYING
-
 	_reset_units_modulate()
-
 	hand.hide()
 
-
-# ==================================================
-# CARD INTERACTION
-# ==================================================
-
 func _on_card_pressed(card):
-
 	if mode != Mode.IDLE:
 		return
 
@@ -148,24 +108,20 @@ func _on_card_pressed(card):
 		return
 
 	selected_card = card
-
 	_enter_playing()
-
 	preview_play(card)
 
-
 func _try_play_card():
-
+	
 	if not selected_card:
 		return
-
+		
 	var mouse_tile = unit.board.world_to_tile(get_global_mouse_position())
 
 	if not preview_range_tiles.has(mouse_tile):
 		return
 
 	var target = get_target_unit_under_mouse()
-
 	var unit_data = unit.data
 	var card_data = selected_card.data
 
@@ -176,19 +132,16 @@ func _try_play_card():
 
 	# AOE cards can target empty tiles
 	if aoe_radius > 0:
-
 		if not target:
-			target = Node2D.new()
-
+			target = Unit.new()
 		target.current_tile = mouse_tile
 
 	else:
-
 		if not target:
 			return
 
+	print(card_data, target)
 	unit.request_play_card(card_data, target)
-
 	_enter_idle()
 
 
@@ -211,13 +164,9 @@ func _confirm_move():
 func update_move_preview():
 
 	var mouse_tile = unit.board.world_to_tile(get_global_mouse_position())
-
 	var raw_path = unit.board.compute_path(unit.current_tile, mouse_tile)
-
 	preview_path.clear()
-
 	highlight_target.clear()
-
 	highlight_target.modulate = Color(0, 0.5, 0, 0.7)
 
 	var steps: int = unit.data.current_pm
@@ -251,59 +200,41 @@ func preview_play(card):
 
 	var srange := _get_card_range(card)
 
-	if srange <= 0:
+	if srange <= 0 and not card.data.target_self:
 		return
 
 	preview_range_tiles.clear()
 
 	var origin = unit.current_tile
+	if card.data.target_self:
+		preview_range_tiles.append(origin)
+		highlight_info.set_cell(origin, 0, Vector2.ZERO)
+	else:
+		for x in range(-srange, srange + 1):
+			for y in range(-srange, srange + 1):
+				if abs(x) + abs(y) <= srange:
+					var tile = origin + Vector2i(x, y)
+					preview_range_tiles.append(tile)
+					highlight_info.set_cell(tile, 0, Vector2.ZERO)
 
-	for x in range(-srange, srange + 1):
-		for y in range(-srange, srange + 1):
 
-			if abs(x) + abs(y) <= srange:
-
-				var tile = origin + Vector2i(x, y)
-
-				preview_range_tiles.append(tile)
-
-				highlight_info.set_cell(tile, 0, Vector2.ZERO)
-
-
-func update_target_preview():
-
+func update_target_preview(is_ally : bool):
 	var mouse_tile = unit.board.world_to_tile(get_global_mouse_position())
-
 	highlight_target.clear()
-
 	_reset_units_modulate()
-
+	
 	if not preview_range_tiles.has(mouse_tile):
 		return
 
 	var aoe_radius := _get_aoe_radius(selected_card)
-
-	# ------------------------------------------------
-	# HOVER TILE
-	# ------------------------------------------------
-
 	highlight_target.modulate = Color(0.3, 0.3, 0.3, 0.7)
 	highlight_target.set_cell(mouse_tile, 0, Vector2.ZERO)
 
-	# ------------------------------------------------
-	# AOE PREVIEW
-	# ------------------------------------------------
-
 	if aoe_radius > 0:
-
 		for x in range(-aoe_radius, aoe_radius + 1):
 			for y in range(-aoe_radius, aoe_radius + 1):
-
 				if abs(x) + abs(y) <= aoe_radius:
-
 					var tile = mouse_tile + Vector2i(x, y)
-
-					# Light red AOE tiles
 					highlight_target.modulate = Color(1, 0.4, 0.4, 0.5)
 					highlight_target.set_cell(tile, 0, Vector2.ZERO)
 
@@ -328,9 +259,6 @@ func update_target_preview():
 
 		return
 
-	# ------------------------------------------------
-	# SINGLE TARGET PREVIEW
-	# ------------------------------------------------
 
 	var unit_name = get_unit_name_at_tile(mouse_tile)
 
@@ -342,13 +270,15 @@ func update_target_preview():
 	if not target:
 		return
 
-	if target.is_player == unit.is_player:
+	if target.is_player == unit.is_player and not is_ally:
 		return
 
-	target.modulate = Color(1, 0.2, 0.2)
-
-	highlight_target.modulate = Color(1, 0, 0, 0.7)
-
+	if not is_ally:
+		target.modulate = Color(1, 0.2, 0.2)
+		highlight_target.modulate = Color(1, 0, 0, 0.7)
+	else:
+		target.modulate = Color(0.2, 0.2, 1)
+		highlight_target.modulate = Color(0, 0, 1, 0.7)
 	highlight_target.set_cell(mouse_tile, 0, Vector2.ZERO)
 
 
@@ -357,9 +287,7 @@ func update_target_preview():
 # ==================================================
 
 func update_cards_playable():
-
 	for card in hand.get_children():
-
 		if not card.visible:
 			continue
 
@@ -367,9 +295,7 @@ func update_cards_playable():
 
 
 func get_target_unit_under_mouse():
-
 	var tile = unit.board.world_to_tile(get_global_mouse_position())
-
 	if not preview_range_tiles.has(tile):
 		return null
 
@@ -383,16 +309,14 @@ func get_target_unit_under_mouse():
 	if not target:
 		return null
 
-	if target.is_player == unit.is_player:
+	if target.is_player == unit.is_player and not selected_card.data.target_self:
 		return null
 
 	return target
 
 
 func get_unit_name_at_tile(tile: Vector2i) -> String:
-
 	for uname in unit.board.units_position:
-
 		if unit.board.units_position[uname] == tile:
 			return uname
 
@@ -400,19 +324,16 @@ func get_unit_name_at_tile(tile: Vector2i) -> String:
 
 
 func _reset_units_modulate():
-
 	for uname in unit.board.units_position:
-
 		var u = $"../../".get_node_or_null(str(uname))
-
 		if u:
 			u.modulate = Color.WHITE
 
 
 func _get_card_range(card) -> int:
-
+	if card.data.target_self: return 0
+	
 	for behavior in card.data.behaviors:
-
 		if behavior is RangeBehavior:
 			return behavior.value.calc(unit.data)
 
@@ -420,9 +341,7 @@ func _get_card_range(card) -> int:
 
 
 func _get_aoe_radius(card) -> int:
-
 	for behavior in card.data.behaviors:
-
 		if behavior is AoeBehavior:
 			return behavior.value.calc(unit.data)
 

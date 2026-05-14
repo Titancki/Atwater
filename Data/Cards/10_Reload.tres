@@ -28,3 +28,4 @@ id = 10
 card_name = "Reload"
 description = "Discard {discard} card. Draw {draw} card."
 behaviors = Array[ExtResource("1_lr5li")]([SubResource("Resource_mham7"), SubResource("Resource_vy1cs")])
+target_self = true

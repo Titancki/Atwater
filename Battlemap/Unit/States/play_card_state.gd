@@ -4,7 +4,6 @@ var card
 var targets = []
 
 func enter(data = {}):
-	print("Play Card State")
 
 	card = data.get("card", null)
 
@@ -13,7 +12,6 @@ func enter(data = {}):
 		return
 
 	if unit.data.current_pa < card.card_cost:
-		print("Not enough PA")
 		state_machine.change_state("Idle")
 		return
 
@@ -31,7 +29,6 @@ func enter(data = {}):
 		unit.animator.change_animation("Pistol_Shoot")
 
 		for target in targets:
-			print(target.name, target.data.current_life)
 			card.play($"../..".data, target.data)
 
 		await get_tree().create_timer(0.67).timeout

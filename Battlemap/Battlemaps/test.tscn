@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://bp8rnqn1hgq83"]
+[gd_scene load_steps=22 format=4 uid="uid://bp8rnqn1hgq83"]
 
 [ext_resource type="Script" uid="uid://bpk0183lbb8kh" path="res://Battlemap/battlemap.gd" id="1_mjcd3"]
 [ext_resource type="Script" uid="uid://btn46rcawlet8" path="res://Battlemap/turn_manager.gd" id="2_c5imj"]
@@ -10,8 +10,9 @@
 [ext_resource type="PackedScene" uid="uid://1fqpux4ascve" path="res://Battlemap/Assets/Isometric Tileset/highlight.tscn" id="7_fkvs5"]
 [ext_resource type="PackedScene" uid="uid://dyxfh2kd6kbaa" path="res://Battlemap/Assets/Isometric Tileset/testBlock.tscn" id="8_5ybqi"]
 [ext_resource type="Resource" uid="uid://duhydhxxiknan" path="res://Data/Cards/15_Jab.tres" id="9_d1d88"]
+[ext_resource type="Resource" uid="uid://jkoeh6ypwy27" path="res://Data/Cards/21_Heal.tres" id="10_2yye8"]
 [ext_resource type="Resource" uid="uid://cd0fyxuiq4aov" path="res://Data/Cards/17_Uppercut.tres" id="10_e7d07"]
-[ext_resource type="Resource" path="res://Data/Units/player.tres" id="16_rqmtm"]
+[ext_resource type="Resource" uid="uid://es2uv1j6sncr" path="res://Data/Units/player.tres" id="16_rqmtm"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_dwbyy"]
 resource_name = "Ground"
@@ -45,7 +46,7 @@ sources/0 = SubResource("TileSetScenesCollectionSource_j663q")
 
 [sub_resource type="Resource" id="Resource_2yye8"]
 script = ExtResource("5_lwnqk")
-turn_hands = Array[Array]([[ExtResource("9_d1d88"), ExtResource("9_d1d88")], [ExtResource("10_e7d07")]])
+turn_hands = Array[Array]([[ExtResource("9_d1d88"), ExtResource("9_d1d88"), ExtResource("10_2yye8")]])
 max_pm = 2
 metadata/_custom_type_script = "uid://bma5l327rj2fm"
 

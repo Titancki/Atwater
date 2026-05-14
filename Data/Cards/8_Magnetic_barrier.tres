@@ -29,3 +29,4 @@ card_name = "Magnetic barrier"
 card_cost = 1
 description = "In a {aoe} tile radius, attract enemies making them come {attract} tiles closer to you."
 behaviors = Array[ExtResource("1_ftpbn")]([SubResource("Resource_6415q"), SubResource("Resource_bg6yi")])
+target_self = true

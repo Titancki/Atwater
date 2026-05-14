@@ -38,3 +38,4 @@ card_name = "Spiked Shell"
 card_cost = 2
 description = "Gain Spike effect dealing {damage} damage in a {aoe} tile radius around you when  you lose armour. Last {duration} turns"
 behaviors = Array[ExtResource("1_th4td")]([SubResource("Resource_sk43h"), SubResource("Resource_grpqm"), SubResource("Resource_bfque")])
+target_self = true

@@ -51,7 +51,7 @@ func build_card_from_api() -> CardData:
 	card.card_name = card_data.get("name", "")
 	card.card_cost = card_data.get("cost", 0)
 	card.description = card_data.get("info", "")
-	
+	card.target_self = card_data.get("targets_self", false)
 	card.behaviors.clear()
 	
 	if card_data.has("behaviours"):
@@ -158,7 +158,6 @@ func update_visual_state():
 	
 	apply_row_color(base_color)
 	
-	# Optional: display state text
 	if has_node("HBoxRow/State"):
 		$HBoxRow/State.text = state_to_string(state)
 
@@ -166,13 +165,13 @@ func get_state_color(s: State) -> Color:
 	match s:
 		State.NEW:
 			$HBoxRow/HBoxActions/ButtonPreview.hide()
-			return Color(0.2, 0.5, 0.2) # 🟢
+			return Color(0.2, 0.5, 0.2)
 		State.UPDATED:
-			return Color(0.6, 0.6, 0.2) # 🟡
+			return Color(0.6, 0.6, 0.2)
 		State.CURRENT:
-			return Color(0.3, 0.3, 0.3) # ⚪
+			return Color(0.3, 0.3, 0.3)
 	
-	return Color(1, 0, 1) # debug
+	return Color(1, 0, 1)
 
 func state_to_string(s: State) -> String:
 	match s:

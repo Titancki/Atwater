@@ -4,7 +4,6 @@ var path: Array[Vector2i] = []
 var current_step := 0
 
 func enter(data = {}):
-	print("Move State")
 	unit.animator.change_animation("Walk")
 	var target: Vector2i = data.get("target", null)
 	if target == null:

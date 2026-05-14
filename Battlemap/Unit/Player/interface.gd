@@ -45,7 +45,6 @@ func _on_discard_btn_pressed() -> void:
 	add_child(card_window)
 
 func _on_deck_btn_pressed() -> void:
-	print("deck btn")
 	var card_window = card_window_scene.instantiate()
 	card_window.window_name = "Deck Cards"
 	card_window.cards = character.data.deck
